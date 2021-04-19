@@ -1,11 +1,8 @@
 import "./App.css";
+import LogInForm from "./components/LogInForm";
 
 function App() {
-  return (
-    <div className="App">
-      <h1>LEASE ORB</h1>
-    </div>
-  );
+  return <div className="App">{<LogInForm />}</div>;
 }
 
 export default App;
