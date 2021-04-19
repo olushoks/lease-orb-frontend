@@ -1,21 +1,23 @@
-import { useState } from "react";
 import "./LogIn.css";
 
-const LogInForm = () => {
+const LogInForm = (props) => {
+  const { username, password, handleChange, handleSubmit } = props;
   return (
     <div className="form-div">
-      <form>
+      <form className="form-input" onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="Username"
           name="username"
-          value=""
+          value={username}
+          onChange={handleChange}
         ></input>
         <input
           type="password"
           placeholder="Password"
           name="password"
-          value=""
+          value={password}
+          onChange={handleChange}
         ></input>
         <button type="submit" className="btn">
           Login

@@ -1,20 +1,23 @@
-const SignUpForm = () => {
+const SignUpForm = (props) => {
+  const { username, password, handleChange, handleSubmit } = props;
   return (
     <div className="form-div">
-      <form className="form-input" onSubmit="">
+      <form className="form-input" onSubmit={handleSubmit}>
         <input
           type="text"
           id="username"
           name="username"
-          value=""
+          value={username}
           placeholder="username"
+          onChange={handleChange}
         ></input>
         <input
           type="password"
           id="password"
           name="password"
-          value=""
+          value={password}
           placeholder="password"
+          onChange={handleChange}
         ></input>
         <button type="submit" className="btn">
           Create Account
