@@ -2,8 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import "./App.css";
 import LogIn from "./components/log-in/LogIn";
-import Header from "./components/header/Header";
-import Main from "./components/main/Main";
+import HomePage from "./components/HomePage";
 
 const App = () => {
   const [user, setUser] = useState({});
@@ -15,7 +14,7 @@ const App = () => {
         ? "http://localhost:5000/api/auth/sign-in"
         : "http://localhost:5000/api/users/sign-up";
 
-    console.log(route);
+    // console.log(route);
 
     await axios
       .post(route, userCredentials)
@@ -24,9 +23,9 @@ const App = () => {
           setIsLoggedIn(true);
           setUser(res.data);
           console.log(res.data);
-          console.log(res.status);
+          //console.log(res.status);
         }
-        console.log(user);
+        //console.log(user);
       })
       .catch((err) => console.log(err));
   };
@@ -35,8 +34,7 @@ const App = () => {
       {isLoggedIn || <LogIn auth={authenticateUser} />}
       {isLoggedIn && (
         <>
-          <Header />
-          <Main username={user.username} />
+          <HomePage user={user} />
         </>
       )}
     </div>
