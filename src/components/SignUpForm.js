@@ -1,5 +1,11 @@
 const SignUpForm = (props) => {
-  const { username, password, handleChange, handleSubmit } = props;
+  const {
+    username,
+    password,
+    toggleDisplay,
+    handleChange,
+    handleSubmit,
+  } = props;
   return (
     <div className="form-div">
       <form className="form-input" onSubmit={handleSubmit}>
@@ -25,7 +31,7 @@ const SignUpForm = (props) => {
       </form>
       <p className="guide-text">
         Already a user?
-        <span onClick={() => console.log("")}>Login</span>
+        <span onClick={() => toggleDisplay("login")}>Login</span>
       </p>
     </div>
   );

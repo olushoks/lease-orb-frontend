@@ -23,3 +23,13 @@ input {
   border: none;
   cursor: pointer;
 }
+
+/* .guide-text {
+  font-style: italic;
+} */
+
+.guide-text span {
+  text-decoration: underline;
+  cursor: pointer;
+  padding-left: 0.5rem;
+}

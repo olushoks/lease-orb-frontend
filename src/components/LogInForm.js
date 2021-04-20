@@ -1,7 +1,13 @@
 import "./LogIn.css";
 
 const LogInForm = (props) => {
-  const { username, password, handleChange, handleSubmit } = props;
+  const {
+    username,
+    password,
+    toggleDisplay,
+    handleChange,
+    handleSubmit,
+  } = props;
   return (
     <div className="form-div">
       <form className="form-input" onSubmit={handleSubmit}>
@@ -25,7 +31,9 @@ const LogInForm = (props) => {
       </form>
       <p className="guide-text">
         New user?
-        <span onClick={() => console.log("")}>Create Account</span>
+        <span onClick={() => toggleDisplay("createAccount")}>
+          Create Account
+        </span>
       </p>
     </div>
   );
