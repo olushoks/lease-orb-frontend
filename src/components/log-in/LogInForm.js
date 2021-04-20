@@ -13,14 +13,14 @@ const LogInForm = (props) => {
       <form className="form-input" onSubmit={(e) => handleSubmit(e)}>
         <input
           type="text"
-          placeholder="Username"
+          placeholder="username"
           name="username"
           value={username}
           onChange={handleChange}
         ></input>
         <input
           type="password"
-          placeholder="Password"
+          placeholder="password"
           name="password"
           value={password}
           onChange={handleChange}

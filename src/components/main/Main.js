@@ -1,10 +1,12 @@
+import "./Main.css";
+
 const Main = ({ username }) => {
   return (
-    <>
+    <div className="main">
       <p>Welcome {username}, what would you like to do today?</p>
-      <button>List A Lease</button>
-      <button>Search Available Leases</button>
-    </>
+      <button className="btn">List A Lease</button>
+      <button className="btn">Search Available Leases</button>
+    </div>
   );
 };
 
