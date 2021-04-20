@@ -9,7 +9,7 @@ const SignUpForm = (props) => {
 
   return (
     <div className="form-div">
-      <form className="form-input" onSubmit={handleSubmit}>
+      <form className="form-input" onSubmit={(e) => handleSubmit(e)}>
         <input
           type="text"
           id="username"

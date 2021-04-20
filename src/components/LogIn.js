@@ -33,8 +33,16 @@ const LogIn = () => {
   //  GET USER INPUT
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log(`${action}-- ${name}: ${value}`);
     setUserCredentials({ ...userCredentials, [name]: value });
+  };
+
+  const handleSubmit = (e) => {
+    const { username, password } = userCredentials;
+    e.preventDefault();
+    if (username && password) {
+      console.log(action, ":", userCredentials);
+      setUserCredentials({ username: "", password: "" });
+    }
   };
 
   return (
@@ -45,7 +53,7 @@ const LogIn = () => {
           password={userCredentials.password}
           toggleDisplay={toggleDisplay}
           handleChange={handleChange}
-          handleSubmit={console.log("---")}
+          handleSubmit={handleSubmit}
         />
       )}
       {displayCreateAccount && (
@@ -54,7 +62,7 @@ const LogIn = () => {
           password={userCredentials.password}
           toggleDisplay={toggleDisplay}
           handleChange={handleChange}
-          handleSubmit={console.log("---")}
+          handleSubmit={handleSubmit}
         />
       )}
     </>
