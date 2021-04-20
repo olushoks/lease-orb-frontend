@@ -2,7 +2,7 @@ import { useState } from "react";
 import LogInForm from "./LogInForm";
 import SignUpForm from "./SignUpForm";
 
-const LogIn = () => {
+const LogIn = ({ auth }) => {
   const [displayLogIn, setDisplayLogIn] = useState(true);
   const [displayCreateAccount, setDisplayCreateAccount] = useState(false);
   const [action, setAction] = useState("login");
@@ -37,9 +37,10 @@ const LogIn = () => {
   };
 
   const handleSubmit = (e) => {
-    const { username, password } = userCredentials;
     e.preventDefault();
+    const { username, password } = userCredentials;
     if (username && password) {
+      auth(action, userCredentials);
       console.log(action, ":", userCredentials);
       setUserCredentials({ username: "", password: "" });
     }
