@@ -3,6 +3,7 @@ import axios from "axios";
 import "./App.css";
 import LogIn from "./components/log-in/LogIn";
 import Header from "./components/header/Header";
+import Main from "./components/main/Main";
 
 const App = () => {
   const [user, setUser] = useState({});
@@ -32,7 +33,12 @@ const App = () => {
   return (
     <div>
       {isLoggedIn || <LogIn auth={authenticateUser} />}
-      {isLoggedIn && <Header />}
+      {isLoggedIn && (
+        <>
+          <Header />
+          <Main username={user.username} />
+        </>
+      )}
     </div>
   );
 };
