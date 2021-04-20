@@ -6,6 +6,7 @@ const SignUpForm = (props) => {
     handleChange,
     handleSubmit,
   } = props;
+
   return (
     <div className="form-div">
       <form className="form-input" onSubmit={handleSubmit}>
