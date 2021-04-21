@@ -1,12 +1,13 @@
+import { useState } from "react";
 import "./Header.css";
 import ListedLease from "../nav/ListedLease";
 
 const Header = ({ user }) => {
+  const [openNav, setOpenNav] = useState(false);
   const handleClick = (task) => {
     switch (task) {
       case "listedLease":
-        <ListedLease user={user} />;
-        alert(`Clicked ${task}`);
+        setOpenNav(!openNav);
         break;
       default:
         break;
@@ -31,7 +32,7 @@ const Header = ({ user }) => {
           </li>
         </ul>
       </nav>
-      <ListedLease user={user} />
+      {openNav && <ListedLease user={user} />}
     </>
   );
 };
