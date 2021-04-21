@@ -2,11 +2,11 @@ const ListedLease = ({ user }) => {
   const [listedLease] = user.listedLease;
   return (
     <div>
+      <p>Name: {listedLease.name}</p>
+      <p>Rent Per Month: ${listedLease.rentPerMonth}</p>
+      <p>Type: {listedLease.apartmentType}</p>
       <p>
-        Name: {listedLease.name} | Rent Per Month: ${listedLease.rentPerMonth}
-      </p>
-      <p>
-        Type: {listedLease.apartmentType} | Available Date:
+        Available Date:
         {listedLease.availableDate}
       </p>
       <p>
