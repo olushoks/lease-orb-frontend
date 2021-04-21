@@ -1,9 +1,9 @@
 import "./Main.css";
 
-const Main = ({ username }) => {
+const Main = ({ user }) => {
   return (
     <div className="main">
-      <p>Welcome {username}, what would you like to do today?</p>
+      <p>Welcome {user.username}, what would you like to do today?</p>
       <button className="btn">List A Lease</button>
       <button className="btn">Search Available Leases</button>
     </div>

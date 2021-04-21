@@ -2,7 +2,7 @@ import { useState } from "react";
 import LogInForm from "./LogInForm";
 import SignUpForm from "./SignUpForm";
 
-const LogIn = ({ auth }) => {
+const LogIn = ({ auth, user }) => {
   const [displayLogIn, setDisplayLogIn] = useState(true);
   const [displayCreateAccount, setDisplayCreateAccount] = useState(false);
   const [action, setAction] = useState("login");
@@ -41,31 +41,32 @@ const LogIn = ({ auth }) => {
     const { username, password } = userCredentials;
     if (username && password) {
       auth(action, userCredentials);
-      console.log(action, ":", userCredentials);
       setUserCredentials({ username: "", password: "" });
     }
   };
 
   return (
     <>
-      {displayLogIn && (
-        <LogInForm
-          username={userCredentials.username}
-          password={userCredentials.password}
-          toggleDisplay={toggleDisplay}
-          handleChange={handleChange}
-          handleSubmit={handleSubmit}
-        />
-      )}
-      {displayCreateAccount && (
-        <SignUpForm
-          username={userCredentials.username}
-          password={userCredentials.password}
-          toggleDisplay={toggleDisplay}
-          handleChange={handleChange}
-          handleSubmit={handleSubmit}
-        />
-      )}
+      <>
+        {displayLogIn && (
+          <LogInForm
+            username={userCredentials.username}
+            password={userCredentials.password}
+            toggleDisplay={toggleDisplay}
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+          />
+        )}
+        {displayCreateAccount && (
+          <SignUpForm
+            username={userCredentials.username}
+            password={userCredentials.password}
+            toggleDisplay={toggleDisplay}
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+          />
+        )}
+      </>
     </>
   );
 };

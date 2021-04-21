@@ -5,7 +5,7 @@ import LogIn from "./components/log-in/LogIn";
 import HomePage from "./components/HomePage";
 
 const App = () => {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const authenticateUser = async (action, userCredentials) => {
@@ -14,8 +14,6 @@ const App = () => {
         ? "http://localhost:5000/api/auth/sign-in"
         : "http://localhost:5000/api/users/sign-up";
 
-    // console.log(route);
-
     await axios
       .post(route, userCredentials)
       .then((res) => {
@@ -23,21 +21,15 @@ const App = () => {
           setIsLoggedIn(true);
           setUser(res.data);
           console.log(res.data);
-          //console.log(res.status);
         }
-        //console.log(user);
       })
       .catch((err) => console.log(err));
   };
   return (
-    <div>
+    <>
       {isLoggedIn || <LogIn auth={authenticateUser} />}
-      {isLoggedIn && (
-        <>
-          <HomePage user={user} />
-        </>
-      )}
-    </div>
+      {isLoggedIn && <HomePage user={user} />}
+    </>
   );
 };
 
