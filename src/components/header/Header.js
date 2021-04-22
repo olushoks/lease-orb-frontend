@@ -4,23 +4,30 @@ import ListedLease from "../nav/ListedLease";
 import InterestedIn from "../nav/InterestedIn";
 
 const Header = ({ user }) => {
-  const [openNav, setOpenNav] = useState(true);
+  const [isNavOpen, setIsNavOpen] = useState(false);
   const [currentNav, setCurrentNav] = useState(null);
 
   const handleClick = (task) => {
     switch (task) {
       case "listedLease":
-        setCurrentNav(<ListedLease user={user} />);
-        // setOpenNav(!openNav);
+        setCurrentNav(<ListedLease user={user} closeNav={closeNav} />);
+        setIsNavOpen(true);
         break;
       case "interestedIn":
-        setCurrentNav(<InterestedIn user={user} />);
-        // setOpenNav(!openNav);
+        setCurrentNav(<InterestedIn user={user} closeNav={closeNav} />);
+        setIsNavOpen(true);
         break;
       default:
         break;
     }
   };
+
+  // CLOSE NAV BAR
+  const closeNav = () => {
+    setIsNavOpen(false);
+    setCurrentNav(null);
+  };
+
   return (
     <>
       <header className="header">Lease-Orb</header>
@@ -40,7 +47,7 @@ const Header = ({ user }) => {
           </li>
         </ul>
       </nav>
-      {openNav && currentNav}
+      {isNavOpen && currentNav}
     </>
   );
 };

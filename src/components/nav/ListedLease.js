@@ -1,8 +1,8 @@
-const ListedLease = ({ user }) => {
+const ListedLease = ({ user, closeNav }) => {
   const [listedLease] = user.listedLease;
   return (
     <div>
-      <span>
+      <span onClick={closeNav}>
         <i class="fas fa-window-close"></i>
       </span>
       <p>Name: {listedLease.name}</p>

@@ -1,8 +1,8 @@
-const InterestedIn = ({ user }) => {
+const InterestedIn = ({ user, closeNav }) => {
   const leaseInterestedIn = user.leaseInterestedIn;
   return (
     <>
-      <span>
+      <span onClick={closeNav}>
         <i class="fas fa-window-close"></i>
       </span>
       {leaseInterestedIn.map((lease) => {
