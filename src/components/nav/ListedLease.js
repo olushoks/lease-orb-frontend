@@ -2,6 +2,9 @@ const ListedLease = ({ user }) => {
   const [listedLease] = user.listedLease;
   return (
     <div>
+      <span>
+        <i class="fas fa-window-close"></i>
+      </span>
       <p>Name: {listedLease.name}</p>
       <p>Rent Per Month: ${listedLease.rentPerMonth}</p>
       <p>Type: {listedLease.apartmentType}</p>
