@@ -72,7 +72,7 @@ const Map = () => {
     const [stateDetails] = addressArray.filter((address) => {
       if (address.types[0] === "administrative_area_level_1") return true;
     });
-    state = stateDetails.short_name;
+    state = stateDetails === undefined ? "" : stateDetails.long_name;
     return state;
   };
 
@@ -83,7 +83,7 @@ const Map = () => {
         return true;
       }
     });
-    city = cityDetails.long_name;
+    city = cityDetails === undefined ? "" : cityDetails.long_name;
     return city;
   };
 
@@ -92,32 +92,32 @@ const Map = () => {
     const [zipCodeDetails] = addressArray.filter((address) => {
       if (address.types[0] === "postal_code") return true;
     });
-    zipCode = zipCodeDetails.long_name;
+    zipCode = zipCodeDetails === undefined ? "" : zipCodeDetails.long_name;
     return zipCode;
   };
 
   // GET LATITUDE AND LONGIITUDE WHEN USER GRAGS MARKER
-  const onEndMarkerDrag = async (event) => {
-    let newLat = event.latLng.lat();
-    let newLng = event.latLng.lng();
+  // const onEndMarkerDrag = async (event) => {
+  //   let newLat = event.latLng.lat();
+  //   let newLng = event.latLng.lng();
 
-    await geocode
-      .fromLatLng(newLat, newLng)
-      .then((response) => {
-        console.log(response.results[0].address_components);
-        const address = response.results[0].formatted_address;
-        const addressArray = response.results[0].address_components;
-        const city = getCity(addressArray);
-        const state = getState(addressArray);
-        const zipCode = getZip(addressArray);
+  //   await geocode
+  //     .fromLatLng(newLat, newLng)
+  //     .then((response) => {
+  //       console.log(response.results[0].address_components);
+  //       const address = response.results[0].formatted_address;
+  //       const addressArray = response.results[0].address_components;
+  //       const city = getCity(addressArray);
+  //       const state = getState(addressArray);
+  //       const zipCode = getZip(addressArray);
 
-        setLocation({ address, city, state, zipCode });
-        setMarkerPosition({ lat: newLat, lng: newLng });
-        setMapPosition({ lat: newLat, lng: newLng });
-        console.log(location);
-      })
-      .catch((err) => console.log(err));
-  };
+  //       setLocation({ address, city, state, zipCode });
+  //       setMarkerPosition({ lat: newLat, lng: newLng });
+  //       setMapPosition({ lat: newLat, lng: newLng });
+  //       console.log(location);
+  //     })
+  //     .catch((err) => console.log(err));
+  // };
 
   // GET LATITUDE AND LONGIITUDE WHEN USER MAKE A SELECTION FROM AUTOCOMPLETE
   const onPlaceSelected = (place) => {
@@ -144,12 +144,12 @@ const Map = () => {
         defaultCenter={{ lat: mapPosition.lat, lng: mapPosition.lng }}
       >
         <Marker
-          draggable={true}
-          onDragEnd={onEndMarkerDrag}
+          draggable={false}
+          // onDragEnd={onEndMarkerDrag}
           position={{ lat: markerPosition.lat, lng: markerPosition.lng }}
         >
           <InfoWindow>
-            <div>My Map</div>
+            <div>{location.city}</div>
           </InfoWindow>
         </Marker>
         <Autocomplete
@@ -175,11 +175,11 @@ const Map = () => {
     <>
       <div style={{ padding: "1rem", margin: "0 auto", maxWidth: 1000 }}>
         <Descriptions bordered>
-          <Descriptions.Item label="City">{location.city}</Descriptions.Item>
+          {/* <Descriptions.Item label="City">{location.city}</Descriptions.Item>
           <Descriptions.Item label="State">{location.state}</Descriptions.Item>
           <Descriptions.Item label="Zip Code">
             {location.zipCode}
-          </Descriptions.Item>
+          </Descriptions.Item> */}
           <Descriptions.Item label="Address">
             {location.address}
           </Descriptions.Item>
