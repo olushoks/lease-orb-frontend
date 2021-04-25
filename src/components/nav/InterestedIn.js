@@ -3,7 +3,7 @@ const InterestedIn = ({ user, closeNav }) => {
   return (
     <>
       <span onClick={closeNav}>
-        <i class="fas fa-window-close"></i>
+        <i className="fas fa-window-close"></i>
       </span>
       {leaseInterestedIn.map((lease) => {
         return (

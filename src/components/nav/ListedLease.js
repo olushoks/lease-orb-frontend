@@ -3,7 +3,7 @@ const ListedLease = ({ user, closeNav }) => {
   return (
     <div>
       <span onClick={closeNav}>
-        <i class="fas fa-window-close"></i>
+        <i className="fas fa-window-close"></i>
       </span>
       <p>Name: {listedLease.name}</p>
       <p>Rent Per Month: ${listedLease.rentPerMonth}</p>
