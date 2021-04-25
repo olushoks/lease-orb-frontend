@@ -28,12 +28,12 @@ const Map = () => {
     zipCode: "",
   });
   const [mapPosition, setMapPosition] = useState({
-    lat: -34.006,
-    lng: 150.678,
+    lat: 39.8097343,
+    lng: -98.5556199,
   });
   const [markerPosition, setMarkerPosition] = useState({
-    lat: -34.006,
-    lng: 150.678,
+    lat: 39.8097343,
+    lng: -98.5556199,
   });
 
   // GET USERS CURRENT LOCATION WHEN COMPONENT RENDERS
@@ -133,7 +133,7 @@ const Map = () => {
     setLocation({ address, city, state, zipCode });
     setMarkerPosition({ lat, lng });
     setMapPosition({ lat, lng });
-    console.log(location);
+    console.log(`lat: ${lat} lng: ${lng}`);
   };
 
   // MAP WRAPPER
@@ -175,11 +175,6 @@ const Map = () => {
     <>
       <div style={{ padding: "1rem", margin: "0 auto", maxWidth: 1000 }}>
         <Descriptions bordered>
-          {/* <Descriptions.Item label="City">{location.city}</Descriptions.Item>
-          <Descriptions.Item label="State">{location.state}</Descriptions.Item>
-          <Descriptions.Item label="Zip Code">
-            {location.zipCode}
-          </Descriptions.Item> */}
           <Descriptions.Item label="Address">
             {location.address}
           </Descriptions.Item>
