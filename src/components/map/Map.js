@@ -1,5 +1,5 @@
 /* eslint-disable array-callback-return */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   InfoWindow,
   withScriptjs,
@@ -35,6 +35,37 @@ const Map = () => {
     lat: -34.006,
     lng: 150.678,
   });
+
+  // GET USERS CURRENT LOCATION WHEN COMPONENT RENDERS
+  useEffect(() => {
+    if (navigator.location) {
+      navigator.location.getCurrentPosiition(
+        (position) => {
+          setMapPosition({
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          });
+        },
+        () => {
+          geocode
+            .fromLatLng(
+              this.position.coords.latitude,
+              this.position.coords.longitude
+            )
+            .then((response) => {
+              console.log(response.results[0].address_components);
+              const address = response.results[0].formatted_address;
+              const addressArray = response.results[0].address_components;
+              const city = getCity(addressArray);
+              const state = getState(addressArray);
+              const zipCode = getZip(addressArray);
+              setLocation({ address, city, state, zipCode });
+            })
+            .catch((err) => console.log(err));
+        }
+      );
+    }
+  }, []);
 
   const getState = (addressArray) => {
     let state;
