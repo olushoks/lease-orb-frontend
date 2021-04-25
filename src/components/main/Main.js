@@ -7,6 +7,11 @@ const Main = ({ user }) => {
   const [showActionBtn, setShowActionBtn] = useState(true);
   const [action, setAction] = useState(null);
 
+  const closeForm = () => {
+    setShowActionBtn(true);
+    setAction(null);
+  };
+
   const handleClick = (action) => {
     switch (action) {
       case "listALease":
@@ -36,7 +41,7 @@ const Main = ({ user }) => {
         </>
       )}
       {/* <Map /> */}
-      {action && <LeaseForm />}
+      {action && <LeaseForm closeForm={closeForm} />}
     </div>
   );
 };
