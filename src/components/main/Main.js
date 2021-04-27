@@ -1,6 +1,6 @@
 import "./Main.css";
-//import Map from "../map/Map";
-import LeaseForm from "../action/LeaseForm";
+// import MapWithAutoComplete from "../map/Map";
+import ListLease from "../action/ListLease";
 import { useState } from "react";
 
 const Main = ({ user }) => {
@@ -40,8 +40,8 @@ const Main = ({ user }) => {
           </button>
         </>
       )}
-      {/* <Map /> */}
-      {action && <LeaseForm closeForm={closeForm} />}
+      {action && <ListLease closeForm={closeForm} />}
+      {/* {action && <MapWithAutoComplete closeForm={closeForm} />} */}
     </div>
   );
 };

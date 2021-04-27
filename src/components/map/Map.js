@@ -8,20 +8,23 @@ import {
   Marker,
 } from "react-google-maps";
 import Autocomplete from "react-google-autocomplete";
-import geocode from "react-geocode";
+import Geocode from "react-geocode";
 import { Descriptions } from "antd";
+
+import LeaseForm from "../action/LeaseForm";
 
 import APIKEY from "../../key";
 
 // SET API FOR USE WITH GEOCODE
-geocode.setApiKey(APIKEY);
+Geocode.setApiKey(APIKEY);
 
 // GOOD MAP URL WITH API KEY
 const googleMapURL = `https://maps.googleapis.com/maps/api/js?key=${APIKEY}&v=3.exp&libraries=geometry,drawing,places`;
 
-const Map = () => {
+const Map = ({ closeForm }) => {
   // STATE VARIABLES
   const [location, setLocation] = useState({
+    name: "",
     address: "",
     city: "",
     state: "",
@@ -47,11 +50,10 @@ const Map = () => {
           });
         },
         () => {
-          geocode
-            .fromLatLng(
-              this.position.coords.latitude,
-              this.position.coords.longitude
-            )
+          Geocode.fromLatLng(
+            this.position.coords.latitude,
+            this.position.coords.longitude
+          )
             .then((response) => {
               console.log(response.results[0].address_components);
               const address = response.results[0].formatted_address;
@@ -124,55 +126,60 @@ const Map = () => {
     const lat = place.geometry.location.lat();
     const lng = place.geometry.location.lng();
 
+    const name = place.name;
     const address = place.formatted_address;
     const addressArray = place.address_components;
     const city = getCity(addressArray);
     const state = getState(addressArray);
     const zipCode = getZip(addressArray);
 
-    setLocation({ address, city, state, zipCode });
+    setLocation({ name, address, city, state, zipCode });
     setMarkerPosition({ lat, lng });
     setMapPosition({ lat, lng });
-    console.log(`lat: ${lat} lng: ${lng}`);
   };
 
   // MAP WRAPPER
   const MapWithAMarker = withScriptjs(
     withGoogleMap((props) => (
-      <GoogleMap
-        defaultZoom={15}
-        defaultCenter={{ lat: mapPosition.lat, lng: mapPosition.lng }}
-      >
-        <Marker
-          draggable={false}
-          // onDragEnd={onEndMarkerDrag}
-          position={{ lat: markerPosition.lat, lng: markerPosition.lng }}
+      <>
+        <GoogleMap
+          defaultZoom={15}
+          defaultCenter={{ lat: mapPosition.lat, lng: mapPosition.lng }}
         >
-          <InfoWindow>
-            <div>{location.city}</div>
-          </InfoWindow>
-        </Marker>
-        <Autocomplete
-          style={{
-            width: "100%",
-            height: "2rem",
-            paddingLeft: "16px",
-            marginTop: "0.5rem",
-            marginBottom: "5rem",
-          }}
-          onPlaceSelected={onPlaceSelected}
-          options={{
-            types: [],
-            componentRestrictions: { country: "us" },
-          }}
-          defaultValue="Raleigh"
-        />
-      </GoogleMap>
+          <Marker
+            draggable={false}
+            position={{ lat: markerPosition.lat, lng: markerPosition.lng }}
+          >
+            <InfoWindow>
+              <div>{location.name}</div>
+            </InfoWindow>
+          </Marker>
+          <Autocomplete
+            style={{
+              width: "100%",
+              height: "2rem",
+              paddingLeft: "16px",
+              marginTop: "0.5rem",
+              marginBottom: "5rem",
+            }}
+            onPlaceSelected={onPlaceSelected}
+            options={{
+              types: [],
+              componentRestrictions: { country: "us" },
+            }}
+            // defaultValue="Raleigh"
+          />
+        </GoogleMap>
+        {<LeaseForm location={location} />}
+      </>
     ))
   );
 
   return (
     <>
+      <span onClick={closeForm}>
+        <i className="fas fa-window-close"></i>
+      </span>
       <div style={{ padding: "1rem", margin: "0 auto", maxWidth: 1000 }}>
         <Descriptions bordered>
           <Descriptions.Item label="Address">
@@ -183,8 +190,8 @@ const Map = () => {
       <MapWithAMarker
         googleMapURL={googleMapURL}
         loadingElement={<div style={{ height: `100%` }} />}
-        containerElement={<div style={{ height: `400px` }} />}
-        mapElement={<div style={{ height: `100%` }} />}
+        containerElement={<div style={{ height: `400px`, width: "50rem" }} />}
+        mapElement={<div style={{ height: `100%`, maxWidth: "50rem" }} />}
       />
     </>
   );

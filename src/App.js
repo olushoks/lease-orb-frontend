@@ -3,6 +3,7 @@ import axios from "axios";
 import "./App.css";
 import LogIn from "./components/log-in/LogIn";
 import HomePage from "./components/HomePage";
+// import Map from "./components/map/Map";
 
 const App = () => {
   const [user, setUser] = useState(null);
