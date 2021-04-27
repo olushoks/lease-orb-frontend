@@ -1,14 +1,14 @@
 import Header from "./header/Header";
 import Main from "./main/Main";
 
-const HomePage = ({ user }) => {
+const HomePage = ({ user, submitLease, logOut }) => {
   if (!user) return null;
 
   if (user) {
     return (
       <>
-        <Header user={user} />
-        <Main user={user} />
+        <Header user={user} logOut={logOut} />
+        <Main user={user} submitLease={submitLease} />
       </>
     );
   }

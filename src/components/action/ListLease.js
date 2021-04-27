@@ -14,7 +14,7 @@ import APIKEY from "../../key";
 Geocode.setApiKey(APIKEY);
 
 const ListLease = (props) => {
-  const { closeForm } = props;
+  const { closeForm, submitLease } = props;
   // STATE VARIABLES
   const [location, setLocation] = useState({
     name: "",
@@ -38,7 +38,7 @@ const ListLease = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (
-      !location.nam === undefined ||
+      !location.name ||
       !location.address ||
       !location.availableDate ||
       !location.rent
@@ -46,6 +46,7 @@ const ListLease = (props) => {
       setMessage("One or more fields needs to be filled before  submitting");
     } else {
       setMessage("Lease has been succesfully submitted");
+      submitLease(location);
       console.log(location);
     }
 

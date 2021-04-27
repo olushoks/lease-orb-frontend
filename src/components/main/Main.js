@@ -3,7 +3,7 @@ import "./Main.css";
 import ListLease from "../action/ListLease";
 import { useState } from "react";
 
-const Main = ({ user }) => {
+const Main = ({ user, submitLease }) => {
   const [showActionBtn, setShowActionBtn] = useState(true);
   const [action, setAction] = useState(null);
   const [error, setError] = useState(null);
@@ -60,7 +60,7 @@ const Main = ({ user }) => {
           {<div>{error}</div>}
         </>
       )}
-      {action && <ListLease closeForm={closeForm} />}
+      {action && <ListLease closeForm={closeForm} submitLease={submitLease} />}
       {/* {action && <MapWithAutoComplete closeForm={closeForm} />} */}
     </div>
   );

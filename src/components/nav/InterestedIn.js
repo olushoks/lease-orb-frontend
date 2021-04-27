@@ -1,7 +1,10 @@
 const InterestedIn = ({ user, closeNav }) => {
   const leaseInterestedIn = user.leaseInterestedIn;
+
+  if (!leaseInterestedIn) return null;
+
   return (
-    <>
+    <div>
       <span onClick={closeNav}>
         <i className="fas fa-window-close"></i>
       </span>
@@ -25,7 +28,7 @@ const InterestedIn = ({ user, closeNav }) => {
           </div>
         );
       })}
-    </>
+    </div>
   );
 };
 

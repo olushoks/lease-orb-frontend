@@ -3,7 +3,7 @@ import "./Header.css";
 import ListedLease from "../nav/ListedLease";
 import InterestedIn from "../nav/InterestedIn";
 
-const Header = ({ user }) => {
+const Header = ({ user, logOut }) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [currentNav, setCurrentNav] = useState(null);
 
@@ -15,6 +15,10 @@ const Header = ({ user }) => {
         break;
       case "interestedIn":
         setCurrentNav(<InterestedIn user={user} closeNav={closeNav} />);
+        setIsNavOpen(true);
+        break;
+      case "logOut":
+        logOut();
         setIsNavOpen(true);
         break;
       default:

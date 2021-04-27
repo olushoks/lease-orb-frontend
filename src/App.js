@@ -26,10 +26,34 @@ const App = () => {
       })
       .catch((err) => console.log(err));
   };
+
+  // SUBMIT LEASE
+  const submitLease = async (lease) => {
+    await axios
+      .post(
+        `http://localhost:5000/api/users/${user.username}/list-lease`,
+        lease
+      )
+      .then((res) => {
+        if (res.status >= 200 && res.status <= 299) {
+          setUser(res.data);
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+
+  // LOG OUT
+  const logOut = () => {
+    setIsLoggedIn(false);
+    setUser(null);
+  };
+
   return (
     <>
       {isLoggedIn || <LogIn auth={authenticateUser} />}
-      {isLoggedIn && <HomePage user={user} />}
+      {isLoggedIn && (
+        <HomePage user={user} submitLease={submitLease} logOut={logOut} />
+      )}
     </>
   );
 };
