@@ -13,15 +13,21 @@ const Main = ({ user }) => {
     setAction(null);
   };
 
+  // IF USER ALREADY HAS AN ACTIVE LEASE, PREVENT FROM ADDING ANOTHER ONE
   const checkForActiveLease = () => {
     if (user.listedLease.length !== 0) {
       setError(
         "You are not allowed to have more than one active leases! Go to your ListedLease to either edit or delete to continue"
       );
+      setTimeout(hideError, 10000);
     } else {
       setAction(true);
       setShowActionBtn(false);
     }
+  };
+
+  const hideError = () => {
+    setError(null);
   };
 
   const handleClick = (action) => {
