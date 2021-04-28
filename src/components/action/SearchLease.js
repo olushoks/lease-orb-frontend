@@ -42,22 +42,27 @@ const SearchLease = ({ closeForm, user }) => {
     </>
   );
 
-  const displayResult = searchResult.map((result) => {
-    return (
-      <div>
-        <p>
-          {result.name} posted by {result.postedBy}
-        </p>
-        <p>{result.address}</p>
-        <p>
-          Listed on {result.dateListed} | Available on {result.availableDate}
-        </p>
-        <p>Currently leasing for ${result.rent} per month</p>
-        <p>{result.additionalInfo}</p>
-        <hr></hr>
-      </div>
-    );
-  });
+  let displayResult;
+
+  if (searchResult) {
+    displayResult = searchResult.map((result) => {
+      let date = result.availableDate().getDay();
+      return (
+        <div>
+          <p>
+            {result.name} posted by {result.postedBy}
+          </p>
+          <p>{result.address}</p>
+          <p>
+            Listed on {result.dateListed} | Available on {date}
+          </p>
+          <p>Currently leasing for ${result.rent} per month</p>
+          <p>{result.additionalInfo}</p>
+          <hr></hr>
+        </div>
+      );
+    });
+  }
 
   return (
     <>

@@ -28,7 +28,7 @@ const App = () => {
       })
       .catch((err) => {
         setError("Invalid username or password");
-        setTimeout(clearError, 10000);
+        setTimeout(clearError, 5000);
         console.log(err);
       });
   };

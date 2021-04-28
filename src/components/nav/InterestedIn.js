@@ -3,6 +3,15 @@ const InterestedIn = ({ user, closeNav }) => {
 
   if (!leaseInterestedIn) return null;
 
+  if (leaseInterestedIn.length === 0)
+    return (
+      <div>
+        <span onClick={closeNav}>
+          <i className="fas fa-window-close"></i>
+        </span>
+        <p>You have not indicated interest in any lease</p>
+      </div>
+    );
   return (
     <div>
       <span onClick={closeNav}>
