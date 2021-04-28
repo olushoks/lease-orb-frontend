@@ -1,5 +1,3 @@
-/* eslint-disable array-callback-return */
-import React, { useState } from "react";
 import {
   InfoWindow,
   withScriptjs,
@@ -9,20 +7,19 @@ import {
 } from "react-google-maps";
 
 import Geocode from "react-geocode";
-
 import APIKEY from "../../key";
 
 // SET API FOR USE WITH GEOCODE
 Geocode.setApiKey(APIKEY);
 
-// GOOD MAP URL WITH API KEY
+// GOOGLE MAP URL WITH API KEY
 const googleMapURL = `https://maps.googleapis.com/maps/api/js?key=${APIKEY}&v=3.exp&libraries=geometry,drawing,places`;
 
 const Map = ({ searchResult }) => {
-  const [markerPosition, setMarkerPosition] = useState({
+  const mapPosition = {
     lat: 39.8097343,
     lng: -98.5556199,
-  });
+  };
 
   // MAP WRAPPER
   const MapWithAMarker = withScriptjs(
@@ -30,7 +27,7 @@ const Map = ({ searchResult }) => {
       <>
         <GoogleMap
           defaultZoom={12}
-          defaultCenter={{ lat: 39.8097343, lng: -98.5556199 }}
+          defaultCenter={{ lat: mapPosition.lat, lng: mapPosition.lng }}
         >
           {searchResult.map((result) => {
             return (
@@ -44,14 +41,6 @@ const Map = ({ searchResult }) => {
               </Marker>
             );
           })}
-          {/* <Marker
-            draggable={false}
-            position={{ lat: markerPosition.lat, lng: markerPosition.lng }}
-          >
-            <InfoWindow>
-              <div>{"location"}</div>
-            </InfoWindow>
-          </Marker> */}
         </GoogleMap>
       </>
     ))
