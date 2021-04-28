@@ -1,13 +1,19 @@
 import Header from "./header/Header";
 import Main from "./main/Main";
 
-const HomePage = ({ user, submitLease, logOut }) => {
+const HomePage = (props) => {
+  const { user, submitLease, logOut, deleteLeaseFromDataBase } = props;
+
   if (!user) return null;
 
   if (user) {
     return (
       <>
-        <Header user={user} logOut={logOut} />
+        <Header
+          user={user}
+          logOut={logOut}
+          deleteLeaseFromDataBase={deleteLeaseFromDataBase}
+        />
         <Main user={user} submitLease={submitLease} />
       </>
     );

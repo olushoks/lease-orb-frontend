@@ -1,6 +1,7 @@
 import { useState } from "react";
 
-const ListedLease = ({ user, closeNav }) => {
+const ListedLease = (props) => {
+  const { user, closeNav, deleteLeaseFromDataBase } = props;
   // const [listedLease] = user.listedLease;
 
   const [listedLease, setListedLease] = useState(user.listedLease);
@@ -9,6 +10,7 @@ const ListedLease = ({ user, closeNav }) => {
   const deleteLease = () => {
     console.log("delete");
     setListedLease([]);
+    deleteLeaseFromDataBase();
   };
 
   if (!listedLease || listedLease.length < 1) {

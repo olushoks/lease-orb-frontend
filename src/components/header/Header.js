@@ -3,14 +3,20 @@ import "./Header.css";
 import ListedLease from "../nav/ListedLease";
 import InterestedIn from "../nav/InterestedIn";
 
-const Header = ({ user, logOut }) => {
+const Header = ({ user, logOut, deleteLeaseFromDataBase }) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [currentNav, setCurrentNav] = useState(null);
 
   const handleClick = (task) => {
     switch (task) {
       case "listedLease":
-        setCurrentNav(<ListedLease user={user} closeNav={closeNav} />);
+        setCurrentNav(
+          <ListedLease
+            user={user}
+            closeNav={closeNav}
+            deleteLeaseFromDataBase={deleteLeaseFromDataBase}
+          />
+        );
         setIsNavOpen(true);
         break;
       case "interestedIn":

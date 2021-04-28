@@ -53,6 +53,18 @@ const App = () => {
       .catch((err) => console.log(err));
   };
 
+  // DELETE LISTED LEASE
+  const deleteLeaseFromDataBase = async () => {
+    await axios
+      .delete(
+        `http://localhost:5000/api/users/${user.username}/delist-lease/${user.listedLease[0]._id}`
+      )
+      .then((res) => {
+        setUser(res.data);
+      })
+      .catch((err) => console.log(err));
+  };
+
   // LOG OUT
   const logOut = () => {
     setIsLoggedIn(false);
@@ -63,7 +75,12 @@ const App = () => {
     <>
       {isLoggedIn || <LogIn auth={authenticateUser} error={error} />}
       {isLoggedIn && (
-        <HomePage user={user} submitLease={submitLease} logOut={logOut} />
+        <HomePage
+          user={user}
+          submitLease={submitLease}
+          logOut={logOut}
+          deleteLeaseFromDataBase={deleteLeaseFromDataBase}
+        />
       )}
     </>
   );
