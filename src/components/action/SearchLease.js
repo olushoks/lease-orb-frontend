@@ -19,11 +19,11 @@ const SearchLease = ({ closeForm, user }) => {
           `http://localhost:5000/api/users/${user.username}/search-lease/${searchCriteria}`
         )
         .then(({ data }) => {
+          setSearchRersult(data);
           console.log(data);
         })
         .catch((err) => console.log(err));
       setSearchCriteria("");
-      console.log(searchCriteria);
     }
   };
 
@@ -47,7 +47,7 @@ const SearchLease = ({ closeForm, user }) => {
       <span onClick={closeForm}>
         <i className="fas fa-window-close"></i>
       </span>
-      <div>{searchResult && <Map />}</div>
+      <div>{searchResult && <Map searchResult={searchResult} />}</div>
       <div>{searchBar}</div>
     </>
   );
