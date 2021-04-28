@@ -5,10 +5,12 @@ const SignUpForm = (props) => {
     toggleDisplay,
     handleChange,
     handleSubmit,
+    error,
   } = props;
 
   return (
     <div className="form-div">
+      <p>{error}</p>
       <form className="form-input" onSubmit={(e) => handleSubmit(e)}>
         <input
           type="text"

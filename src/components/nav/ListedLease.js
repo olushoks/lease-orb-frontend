@@ -1,5 +1,5 @@
 const ListedLease = ({ user, closeNav }) => {
-  if (user.listedLease > 1) return null;
+  if (user.listedLease.length > 1) return null;
 
   const [listedLease] = user.listedLease;
 

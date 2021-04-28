@@ -1,16 +1,19 @@
 import "./Main.css";
-// import MapWithAutoComplete from "../map/Map";
 import ListLease from "../action/ListLease";
+import SearchLease from "../action/SearchLease";
 import { useState } from "react";
 
 const Main = ({ user, submitLease }) => {
   const [showActionBtn, setShowActionBtn] = useState(true);
-  const [action, setAction] = useState(null);
+  // const [action, setAction] = useState(null);
+  const [listLease, setListLease] = useState(false);
+  const [leaseSearch, setLeaseSearch] = useState(false);
   const [error, setError] = useState(null);
 
   const closeForm = () => {
     setShowActionBtn(true);
-    setAction(null);
+    setListLease(false);
+    setLeaseSearch(false);
   };
 
   // IF USER ALREADY HAS AN ACTIVE LEASE, PREVENT FROM ADDING ANOTHER ONE
@@ -19,14 +22,14 @@ const Main = ({ user, submitLease }) => {
       setError(
         "You are not allowed to have more than one active leases! Go to your ListedLease to either edit or delete to continue"
       );
-      setTimeout(hideError, 10000);
+      setTimeout(clearError, 10000);
     } else {
-      setAction(true);
+      setListLease(true);
       setShowActionBtn(false);
     }
   };
 
-  const hideError = () => {
+  const clearError = () => {
     setError(null);
   };
 
@@ -38,7 +41,7 @@ const Main = ({ user, submitLease }) => {
         // setShowActionBtn(false);
         break;
       case "searchLease":
-        setAction(true);
+        setLeaseSearch(true);
         setShowActionBtn(false);
         break;
       default:
@@ -60,8 +63,10 @@ const Main = ({ user, submitLease }) => {
           {<div>{error}</div>}
         </>
       )}
-      {action && <ListLease closeForm={closeForm} submitLease={submitLease} />}
-      {/* {action && <MapWithAutoComplete closeForm={closeForm} />} */}
+      {listLease && (
+        <ListLease closeForm={closeForm} submitLease={submitLease} />
+      )}
+      {leaseSearch && <SearchLease closeForm={closeForm} user={user} />}
     </div>
   );
 };

@@ -47,6 +47,18 @@ const ListLease = (props) => {
     } else {
       setMessage("Lease has been succesfully submitted");
       submitLease(location);
+      setLocation({
+        name: "",
+        address: "",
+        city: "",
+        state: "",
+        zipCode: "",
+        lat: null,
+        lng: null,
+        additionalInfo: "",
+        availableDate: "",
+        rent: "",
+      });
       console.log(location);
     }
 
@@ -108,7 +120,6 @@ const ListLease = (props) => {
     const city = getCity(addressArray);
     const state = getState(addressArray);
     const zipCode = getZip(addressArray);
-
     setMapLocation({ lat, lng });
     setLocation({ ...location, name, address, city, state, zipCode, lat, lng });
   };
@@ -119,17 +130,21 @@ const ListLease = (props) => {
       <span onClick={closeForm}>
         <i className="fas fa-window-close"></i>
       </span>
-      <MapWithAutoComplete
-        mapLocation={mapLocation}
-        location={location}
-        onPlaceSelected={onPlaceSelected}
-      />
-      <LeaseForm
-        location={location}
-        handleChange={handleChange}
-        handleSubmit={handleSubmit}
-        message={message}
-      />
+      <div>
+        <MapWithAutoComplete
+          mapLocation={mapLocation}
+          location={location}
+          onPlaceSelected={onPlaceSelected}
+        />
+      </div>
+      <div>
+        <LeaseForm
+          location={location}
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+          message={message}
+        />
+      </div>
     </>
   );
 };

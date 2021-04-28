@@ -8,6 +8,7 @@ import HomePage from "./components/HomePage";
 const App = () => {
   const [user, setUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [error, setError] = useState(null);
 
   const authenticateUser = async (action, userCredentials) => {
     const route =
@@ -21,10 +22,20 @@ const App = () => {
         if (res.status === 200) {
           setIsLoggedIn(true);
           setUser(res.data);
+          setError(null);
           console.log(res.data);
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        setError("Invalid username or password");
+        setTimeout(clearError, 10000);
+        console.log(err);
+      });
+  };
+
+  // CLEAR ERROR
+  const clearError = () => {
+    setError(null);
   };
 
   // SUBMIT LEASE
@@ -50,7 +61,7 @@ const App = () => {
 
   return (
     <>
-      {isLoggedIn || <LogIn auth={authenticateUser} />}
+      {isLoggedIn || <LogIn auth={authenticateUser} error={error} />}
       {isLoggedIn && (
         <HomePage user={user} submitLease={submitLease} logOut={logOut} />
       )}
