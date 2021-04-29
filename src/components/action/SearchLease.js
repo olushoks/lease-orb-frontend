@@ -4,10 +4,9 @@ import axios from "axios";
 
 const SearchLease = ({ closeForm, user }) => {
   const [searchCriteria, setSearchCriteria] = useState("");
-  const [searchResult, setSearchRersult] = useState(false);
+  const [searchResult, setSearchResult] = useState(null);
 
   const handleChange = (e) => {
-    // console.log(e.target.value);
     setSearchCriteria(e.target.value);
   };
 
@@ -19,7 +18,7 @@ const SearchLease = ({ closeForm, user }) => {
           `http://localhost:5000/api/users/${user.username}/search-lease/${searchCriteria}`
         )
         .then(({ data }) => {
-          setSearchRersult(data);
+          setSearchResult(data);
           console.log(data);
         })
         .catch((err) => console.log(err));
@@ -45,23 +44,28 @@ const SearchLease = ({ closeForm, user }) => {
   let displayResult;
 
   if (searchResult) {
-    displayResult = searchResult.map((result) => {
-      let date = result.availableDate().getDay();
-      return (
-        <div>
-          <p>
-            {result.name} posted by {result.postedBy}
-          </p>
-          <p>{result.address}</p>
-          <p>
-            Listed on {result.dateListed} | Available on {date}
-          </p>
-          <p>Currently leasing for ${result.rent} per month</p>
-          <p>{result.additionalInfo}</p>
-          <hr></hr>
-        </div>
+    displayResult =
+      searchResult.length === 0 ? (
+        <>No results found. Please refine your search</>
+      ) : (
+        searchResult.map((result) => {
+          return (
+            <div>
+              <p>
+                {result.name} posted by {result.postedBy}
+              </p>
+              <p>{result.address}</p>
+              <p>
+                Listed on {result.dateListed} | Available on{" "}
+                {result.availableDate}
+              </p>
+              <p>Currently leasing for ${result.rent} per month</p>
+              <p>{result.additionalInfo}</p>
+              <hr></hr>
+            </div>
+          );
+        })
       );
-    });
   }
 
   return (

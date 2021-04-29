@@ -51,9 +51,9 @@ const Main = ({ user, submitLease }) => {
 
   return (
     <div className="main">
-      <p>Welcome {user.username}, what would you like to do today?</p>
       {showActionBtn && (
         <>
+          <p>Welcome {user.username}, what would you like to do today?</p>
           <button className="btn" onClick={() => handleClick("listALease")}>
             List A Lease
           </button>
