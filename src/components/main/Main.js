@@ -5,7 +5,6 @@ import { useState } from "react";
 
 const Main = ({ user, submitLease }) => {
   const [showActionBtn, setShowActionBtn] = useState(true);
-  // const [action, setAction] = useState(null);
   const [listLease, setListLease] = useState(false);
   const [leaseSearch, setLeaseSearch] = useState(false);
   const [error, setError] = useState(null);
@@ -20,7 +19,7 @@ const Main = ({ user, submitLease }) => {
   const checkForActiveLease = () => {
     if (user.listedLease.length !== 0) {
       setError(
-        "You are not allowed to have more than one active leases! Go to your ListedLease to either edit or delete to continue"
+        "You are not allowed to have more than one active lease! Go to your ListedLease to either edit or delete to continue"
       );
       setTimeout(clearError, 5000);
     } else {

@@ -59,7 +59,6 @@ const ListLease = (props) => {
         availableDate: "",
         rent: "",
       });
-      console.log(location);
     }
 
     //   Geocode.fromAddress(location.address).then(

@@ -48,6 +48,7 @@ const App = () => {
       .then((res) => {
         if (res.status >= 200 && res.status <= 299) {
           setUser(res.data);
+          console.log(res.data);
         }
       })
       .catch((err) => console.log(err));
@@ -61,6 +62,7 @@ const App = () => {
       )
       .then((res) => {
         setUser(res.data);
+        console.log(res.data);
       })
       .catch((err) => console.log(err));
   };

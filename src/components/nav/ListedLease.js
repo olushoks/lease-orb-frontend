@@ -8,8 +8,8 @@ const ListedLease = (props) => {
   // if (user.listedLease.length > 1) return null;
 
   const deleteLease = () => {
-    setListedLease([]);
-    deleteLeaseFromDataBase();
+    setListedLease([]); // Removes from UI
+    deleteLeaseFromDataBase(); // Removes from Database
   };
 
   if (!listedLease || listedLease.length < 1) {
