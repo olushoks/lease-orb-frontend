@@ -10,7 +10,7 @@ const SearchLease = ({ closeForm, user }) => {
     setSearchCriteria(e.target.value);
   };
 
-  const handleClick = async (e) => {
+  const handleSearch = async (e) => {
     e.preventDefault();
     if (searchCriteria) {
       await axios
@@ -26,6 +26,10 @@ const SearchLease = ({ closeForm, user }) => {
     }
   };
 
+  const indicateInterestInLease = (lease) => {
+    console.log(lease.name);
+  };
+
   const searchBar = (
     <>
       <input
@@ -35,7 +39,7 @@ const SearchLease = ({ closeForm, user }) => {
         value={searchCriteria}
         onChange={handleChange}
       ></input>
-      <button type="submit" onClick={handleClick}>
+      <button type="submit" onClick={handleSearch}>
         Search
       </button>
     </>
@@ -61,6 +65,10 @@ const SearchLease = ({ closeForm, user }) => {
               </p>
               <p>Currently leasing for ${result.rent} per month</p>
               <p>{result.additionalInfo}</p>
+              <button onClick={() => indicateInterestInLease(result)}>
+                Indicate Interest
+              </button>
+
               <hr></hr>
             </div>
           );
