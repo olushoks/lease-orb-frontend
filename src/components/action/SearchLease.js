@@ -26,8 +26,19 @@ const SearchLease = ({ closeForm, user }) => {
     }
   };
 
-  const indicateInterestInLease = (lease) => {
+  const indicateInterestInLease = async (lease) => {
     console.log(lease.name);
+    await axios
+      .post(
+        `http://localhost:5000/api/users/${user.username}/show-interest/${lease._id}`,
+        null
+      )
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const searchBar = (
