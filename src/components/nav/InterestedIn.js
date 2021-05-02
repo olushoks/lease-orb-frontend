@@ -20,18 +20,16 @@ const InterestedIn = ({ user, closeNav }) => {
       {leaseInterestedIn.map((lease) => {
         return (
           <div key={lease._id}>
-            <p>Name: {lease.name}</p>
-            <p>Rent Per Month: ${lease.rentPerMonth}</p>
-            <p>Type: {lease.apartmentType}</p>
             <p>
-              Available Date:
-              {lease.availableDate}
+              {lease.name} posted by {lease.postedBy}
             </p>
+            <p>{lease.address}</p>
             <p>
-              City: {lease.city} | State: {lease.state} | ZipCode:
-              {lease.zipCode}
+              Listed on {lease.dateListed} | Available on {lease.availableDate}
             </p>
-            <p>Additional Info: {lease.additionalInfo}</p>
+            <p>Currently leasing for ${lease.rent} per month</p>
+            <p>{lease.additionalInfo}</p>
+
             <br></br>
             <br></br>
           </div>

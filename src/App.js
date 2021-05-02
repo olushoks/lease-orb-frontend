@@ -10,6 +10,7 @@ const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [error, setError] = useState(null);
 
+  // LOGIN <---> SIGN UP
   const authenticateUser = async (action, userCredentials) => {
     const route =
       action === "login"
@@ -52,6 +53,11 @@ const App = () => {
         }
       })
       .catch((err) => console.log(err));
+  };
+
+  // INDICATE INTEREST IN LEASE
+  const showInterest = (user) => {
+    setUser(user);
   };
 
   // DELETE LISTED LEASE

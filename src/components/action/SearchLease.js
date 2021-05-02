@@ -5,6 +5,7 @@ import axios from "axios";
 const SearchLease = ({ closeForm, user }) => {
   const [searchCriteria, setSearchCriteria] = useState("");
   const [searchResult, setSearchResult] = useState(null);
+  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     setSearchCriteria(e.target.value);
@@ -37,8 +38,23 @@ const SearchLease = ({ closeForm, user }) => {
         console.log(res);
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.response);
+        if (err.response.data.error1) {
+          // setError(err.response.data.error1);
+          // setTimeout(clearError, 5000);
+          console.log(err.response.data.error1);
+        }
+        if (err.response.data.error2) {
+          // setError(err.response.data.error2);
+          // setTimeout(clearError, 5000);
+          console.log(err.response.data.error2);
+        }
+        console.log(err.response.data);
       });
+  };
+
+  const clearError = () => {
+    setError(null);
   };
 
   const searchBar = (
@@ -46,7 +62,6 @@ const SearchLease = ({ closeForm, user }) => {
       <input
         type="search"
         placeholder="search by city or zip"
-        //name="searchCriteria"
         value={searchCriteria}
         onChange={handleChange}
       ></input>
@@ -94,6 +109,7 @@ const SearchLease = ({ closeForm, user }) => {
       </span>
       <div>{searchResult && <Map searchResult={searchResult} />}</div>
       <div>{searchBar}</div>
+      <p>{error}</p>
       <div>{searchResult && displayResult}</div>
     </>
   );
