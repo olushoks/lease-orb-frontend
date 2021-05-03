@@ -12,6 +12,7 @@ const InterestedIn = ({ user, closeNav }) => {
         <p>You have not indicated interest in any lease</p>
       </div>
     );
+
   return (
     <div>
       <span onClick={closeNav}>
@@ -30,7 +31,6 @@ const InterestedIn = ({ user, closeNav }) => {
             <p>Currently leasing for ${lease.rent} per month</p>
             <p>{lease.additionalInfo}</p>
 
-            <br></br>
             <br></br>
           </div>
         );

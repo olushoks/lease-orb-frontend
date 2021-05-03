@@ -34,6 +34,7 @@ const Map = ({ searchResult }) => {
               <Marker
                 draggable={false}
                 position={{ lat: result.lat, lng: result.lng }}
+                key={result.lat + result.lng}
               >
                 <InfoWindow>
                   <div>{result.name}</div>

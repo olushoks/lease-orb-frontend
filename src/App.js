@@ -56,8 +56,9 @@ const App = () => {
   };
 
   // INDICATE INTEREST IN LEASE
-  const showInterest = (user) => {
-    setUser(user);
+  const indicateInterest = (newUser) => {
+    setUser(newUser);
+    console.log(newUser);
   };
 
   // DELETE LISTED LEASE
@@ -88,6 +89,7 @@ const App = () => {
           submitLease={submitLease}
           logOut={logOut}
           deleteLeaseFromDataBase={deleteLeaseFromDataBase}
+          indicateInterest={indicateInterest}
         />
       )}
     </>

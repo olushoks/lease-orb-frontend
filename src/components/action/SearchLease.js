@@ -2,7 +2,7 @@ import Map from "../map/Map";
 import { useState } from "react";
 import axios from "axios";
 
-const SearchLease = ({ closeForm, user }) => {
+const SearchLease = ({ closeForm, user, indicateInterest }) => {
   const [searchCriteria, setSearchCriteria] = useState("");
   const [searchResult, setSearchResult] = useState(null);
   const [error, setError] = useState("");
@@ -36,6 +36,7 @@ const SearchLease = ({ closeForm, user }) => {
       )
       .then((res) => {
         console.log(res);
+        indicateInterest(res.data);
       })
       .catch((err) => {
         console.log(err.response);
@@ -53,9 +54,9 @@ const SearchLease = ({ closeForm, user }) => {
       });
   };
 
-  const clearError = () => {
-    setError(null);
-  };
+  // const clearError = () => {
+  //   setError(null);
+  // };
 
   const searchBar = (
     <>

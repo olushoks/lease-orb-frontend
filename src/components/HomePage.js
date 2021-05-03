@@ -2,7 +2,13 @@ import Header from "./header/Header";
 import Main from "./main/Main";
 
 const HomePage = (props) => {
-  const { user, submitLease, logOut, deleteLeaseFromDataBase } = props;
+  const {
+    user,
+    submitLease,
+    logOut,
+    deleteLeaseFromDataBase,
+    indicateInterest,
+  } = props;
 
   if (!user) return null;
 
@@ -14,7 +20,11 @@ const HomePage = (props) => {
           logOut={logOut}
           deleteLeaseFromDataBase={deleteLeaseFromDataBase}
         />
-        <Main user={user} submitLease={submitLease} />
+        <Main
+          user={user}
+          submitLease={submitLease}
+          indicateInterest={indicateInterest}
+        />
       </>
     );
   }

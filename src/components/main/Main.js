@@ -3,7 +3,7 @@ import ListLease from "../action/ListLease";
 import SearchLease from "../action/SearchLease";
 import { useState } from "react";
 
-const Main = ({ user, submitLease }) => {
+const Main = ({ user, submitLease, indicateInterest }) => {
   const [showActionBtn, setShowActionBtn] = useState(true);
   const [listLease, setListLease] = useState(false);
   const [leaseSearch, setLeaseSearch] = useState(false);
@@ -65,7 +65,13 @@ const Main = ({ user, submitLease }) => {
       {listLease && (
         <ListLease closeForm={closeForm} submitLease={submitLease} />
       )}
-      {leaseSearch && <SearchLease closeForm={closeForm} user={user} />}
+      {leaseSearch && (
+        <SearchLease
+          closeForm={closeForm}
+          user={user}
+          indicateInterest={indicateInterest}
+        />
+      )}
     </div>
   );
 };
