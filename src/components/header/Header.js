@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./Header.css";
 import ListedLease from "../nav/ListedLease";
 import InterestedIn from "../nav/InterestedIn";
+import Messages from "../nav/Messages";
 
 const Header = ({ user, logOut, deleteLeaseFromDataBase }) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -21,6 +22,10 @@ const Header = ({ user, logOut, deleteLeaseFromDataBase }) => {
         break;
       case "interestedIn":
         setCurrentNav(<InterestedIn user={user} closeNav={closeNav} />);
+        setIsNavOpen(true);
+        break;
+      case "messages":
+        setCurrentNav(<Messages user={user} closeNav={closeNav} />);
         setIsNavOpen(true);
         break;
       case "logOut":
