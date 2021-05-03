@@ -4,7 +4,12 @@ import ListedLease from "../nav/ListedLease";
 import InterestedIn from "../nav/InterestedIn";
 import Messages from "../nav/Messages";
 
-const Header = ({ user, logOut, deleteLeaseFromDataBase }) => {
+const Header = ({
+  user,
+  logOut,
+  deleteLeaseFromDataBase,
+  withdrawInterest,
+}) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [currentNav, setCurrentNav] = useState(null);
 
@@ -21,7 +26,13 @@ const Header = ({ user, logOut, deleteLeaseFromDataBase }) => {
         setIsNavOpen(true);
         break;
       case "interestedIn":
-        setCurrentNav(<InterestedIn user={user} closeNav={closeNav} />);
+        setCurrentNav(
+          <InterestedIn
+            user={user}
+            closeNav={closeNav}
+            withdrawInterest={withdrawInterest}
+          />
+        );
         setIsNavOpen(true);
         break;
       case "messages":

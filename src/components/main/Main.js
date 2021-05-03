@@ -19,7 +19,7 @@ const Main = ({ user, submitLease, indicateInterest }) => {
   const checkForActiveLease = () => {
     if (user.listedLease.length !== 0) {
       setError(
-        "You are not allowed to have more than one active lease! Go to your ListedLease to either edit or delete to continue"
+        "You are not allowed to have more than one active lease! Go to your ListedLease to delete to continue"
       );
       setTimeout(clearError, 5000);
     } else {

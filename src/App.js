@@ -28,9 +28,8 @@ const App = () => {
         }
       })
       .catch((err) => {
-        setError("Invalid username or password");
+        setError(err.response.data);
         setTimeout(clearError, 5000);
-        console.log(err);
       });
   };
 
@@ -49,16 +48,19 @@ const App = () => {
       .then((res) => {
         if (res.status >= 200 && res.status <= 299) {
           setUser(res.data);
-          console.log(res.data);
         }
       })
       .catch((err) => console.log(err));
   };
 
   // INDICATE INTEREST IN LEASE
-  const indicateInterest = (newUser) => {
-    setUser(newUser);
-    console.log(newUser);
+  const indicateInterest = (updatedUser) => {
+    setUser(updatedUser);
+  };
+
+  // WITHDRAW INTEREST IN LEASE
+  const withdrawInterest = (updatedUser) => {
+    setUser(updatedUser);
   };
 
   // DELETE LISTED LEASE
@@ -69,7 +71,6 @@ const App = () => {
       )
       .then((res) => {
         setUser(res.data);
-        console.log(res.data);
       })
       .catch((err) => console.log(err));
   };
@@ -90,6 +91,7 @@ const App = () => {
           logOut={logOut}
           deleteLeaseFromDataBase={deleteLeaseFromDataBase}
           indicateInterest={indicateInterest}
+          withdrawInterest={withdrawInterest}
         />
       )}
     </>
