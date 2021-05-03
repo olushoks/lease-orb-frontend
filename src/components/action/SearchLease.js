@@ -28,14 +28,13 @@ const SearchLease = ({ closeForm, user, indicateInterest }) => {
   };
 
   const indicateInterestInLease = async (lease) => {
-    console.log(lease.name);
+    console.log(lease.postedBy);
     await axios
       .post(
         `http://localhost:5000/api/users/${user.username}/show-interest/${lease._id}`,
         null
       )
       .then((res) => {
-        console.log(res);
         indicateInterest(res.data);
       })
       .catch((err) => {
