@@ -29,7 +29,7 @@ const App = () => {
       })
       .catch((err) => {
         setError(err.response.data);
-        setTimeout(clearError, 5000);
+        setTimeout(clearError, 3000);
       });
   };
 

@@ -1,5 +1,23 @@
+import { useState } from "react";
+
 const Messages = ({ user, closeNav }) => {
   const messages = user.messages;
+  const [conversationText, setConversationText] = useState(null);
+
+  const displayConversationText = (conversation) => {
+    const conversationDetails = conversation.map((convo) => {
+      return (
+        <p key={convo.text}>
+          <i
+            className="fas fa-chevron-left"
+            onClick={() => setConversationText(null)}
+          ></i>
+          {convo.text}
+        </p>
+      );
+    });
+    setConversationText(<div>{conversationDetails}</div>);
+  };
 
   if (!messages) return null;
 
@@ -18,13 +36,18 @@ const Messages = ({ user, closeNav }) => {
       <span onClick={closeNav}>
         <i className="fas fa-window-close"></i>
       </span>
-      {messages.map((message) => {
-        return (
-          <div key={message._id}>
-            <p>{message.title}</p>
-          </div>
-        );
-      })}
+      <div>
+        {messages.map((message) => {
+          return (
+            <div key={message._id}>
+              <h6 onClick={() => displayConversationText(message.conversation)}>
+                {message.title}
+              </h6>
+            </div>
+          );
+        })}
+        <>{conversationText}</>
+      </div>
     </div>
   );
 };

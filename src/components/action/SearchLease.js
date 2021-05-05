@@ -40,22 +40,22 @@ const SearchLease = ({ closeForm, user, indicateInterest }) => {
       .catch((err) => {
         console.log(err.response);
         if (err.response.data.error1) {
-          // setError(err.response.data.error1);
-          // setTimeout(clearError, 5000);
+          setError(err.response.data.error1);
+          setTimeout(clearError, 3000);
           console.log(err.response.data.error1);
         }
         if (err.response.data.error2) {
-          // setError(err.response.data.error2);
-          // setTimeout(clearError, 5000);
+          setError(err.response.data.error2);
+          setTimeout(clearError, 3000);
           console.log(err.response.data.error2);
         }
         console.log(err.response.data);
       });
   };
 
-  // const clearError = () => {
-  //   setError(null);
-  // };
+  const clearError = () => {
+    setError(null);
+  };
 
   const searchBar = (
     <>
