@@ -3,20 +3,31 @@ import { useState } from "react";
 const Messages = ({ user, closeNav }) => {
   const messages = user.messages;
   const [conversationText, setConversationText] = useState(null);
+  const [replyText, setReplyText] = useState("");
+
+  const handleReplyText = (e) => {
+    setReplyText(e.target.value);
+    console.log(e.target.value);
+  };
 
   const displayConversationText = (conversation) => {
     const conversationDetails = conversation.map((convo) => {
-      return (
-        <p key={convo.text}>
-          <i
-            className="fas fa-chevron-left"
-            onClick={() => setConversationText(null)}
-          ></i>
-          {convo.text}
-        </p>
-      );
+      return <p key={convo.text}>{convo.text}</p>;
     });
-    setConversationText(<div>{conversationDetails}</div>);
+    setConversationText(
+      <div>
+        <i
+          className="fas fa-chevron-left"
+          onClick={() => setConversationText(null)}
+        ></i>
+        {conversationDetails}
+        <textarea
+          name="replyText"
+          value={replyText}
+          onChange={handleReplyText}
+        ></textarea>
+      </div>
+    );
   };
 
   if (!messages) return null;
