@@ -6,9 +6,27 @@ const Messages = ({ user, closeNav }) => {
   const [replyText, setReplyText] = useState("");
 
   const handleReplyText = (e) => {
-    setReplyText(e.target.value);
     console.log(e.target.value);
+    setReplyText(e.target.value);
   };
+
+  const reply = (e) => {
+    e.preventDefault();
+    console.log(replyText);
+  };
+
+  const replyTextArea = (
+    <form onSubmit={reply}>
+      <textarea
+        name="text"
+        rows="5"
+        cols="20"
+        value={replyText}
+        onChange={handleReplyText}
+      ></textarea>
+      <button type="submit">reply</button>
+    </form>
+  );
 
   const displayConversationText = (conversation) => {
     const conversationDetails = conversation.map((convo) => {
@@ -21,11 +39,6 @@ const Messages = ({ user, closeNav }) => {
           onClick={() => setConversationText(null)}
         ></i>
         {conversationDetails}
-        <textarea
-          name="replyText"
-          value={replyText}
-          onChange={handleReplyText}
-        ></textarea>
       </div>
     );
   };
@@ -58,6 +71,7 @@ const Messages = ({ user, closeNav }) => {
           );
         })}
         <>{conversationText}</>
+        {conversationText && replyTextArea}
       </div>
     </div>
   );

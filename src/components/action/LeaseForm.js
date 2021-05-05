@@ -50,7 +50,9 @@ const LeaseForm = (props) => {
           value={location.additionalInfo}
           onChange={handleChange}
         ></textarea>
-        <button className="btn">Submit</button>
+        <button type="submit" className="btn">
+          Submit
+        </button>
       </form>
     </>
   );
