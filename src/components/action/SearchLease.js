@@ -2,6 +2,8 @@ import Map from "../map/Map";
 import { useState } from "react";
 import axios from "axios";
 
+import transformString from "../../helper/stringTransformer";
+
 const SearchLease = ({ closeForm, user, indicateInterest }) => {
   const [searchCriteria, setSearchCriteria] = useState("");
   const [searchResult, setSearchResult] = useState(null);
@@ -13,10 +15,13 @@ const SearchLease = ({ closeForm, user, indicateInterest }) => {
 
   const handleSearch = async (e) => {
     e.preventDefault();
+
     if (searchCriteria) {
       await axios
         .get(
-          `http://localhost:5000/api/users/${user.username}/search-lease/${searchCriteria}`
+          `http://localhost:5000/api/users/${
+            user.username
+          }/search-lease/${transformString(searchCriteria)}`
         )
         .then(({ data }) => {
           setSearchResult(data);

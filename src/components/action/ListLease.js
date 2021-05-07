@@ -6,6 +6,7 @@ import LeaseForm from "../action/LeaseForm";
 import MapWithAutoComplete from "../map/MapWithAutoComplete";
 
 import APIKEY from "../../key";
+import transformString from "../../helper/stringTransformer";
 
 // GOOGLE MAP URL WITH API KEY
 // const googleMapURL = `https://maps.googleapis.com/maps/api/js?key=${APIKEY}&v=3.exp&libraries=geometry,drawing,places`;
@@ -85,6 +86,7 @@ const ListLease = (props) => {
       if (address.types[0] === "administrative_area_level_1") return true;
     });
     state = stateDetails === undefined ? "" : stateDetails.long_name;
+    state = transformString(state);
     return state;
   };
 
@@ -96,6 +98,7 @@ const ListLease = (props) => {
       }
     });
     city = cityDetails === undefined ? "" : cityDetails.long_name;
+    city = transformString(city);
     return city;
   };
 
@@ -105,6 +108,7 @@ const ListLease = (props) => {
       if (address.types[0] === "postal_code") return true;
     });
     zipCode = zipCodeDetails === undefined ? "" : zipCodeDetails.long_name;
+    zipCode = transformString(zipCode);
     return zipCode;
   };
 
