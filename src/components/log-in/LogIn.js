@@ -32,7 +32,8 @@ const LogIn = ({ auth, user, error }) => {
 
   //  GET USER INPUT
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    let { name, value } = e.target;
+
     setUserCredentials({ ...userCredentials, [name]: value });
   };
 
@@ -41,7 +42,10 @@ const LogIn = ({ auth, user, error }) => {
     let { username, password } = userCredentials;
 
     if (username && password) {
-      auth(action, userCredentials);
+      // TRIM SPACES & CONVERT USERNAME TO LOWERCASE
+      username = username.trim().toLowerCase();
+
+      auth(action, { username, password });
       setUserCredentials({ username: "", password: "" });
     }
   };

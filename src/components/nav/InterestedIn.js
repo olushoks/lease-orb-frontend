@@ -19,16 +19,23 @@ const InterestedIn = ({ user, closeNav, withdrawInterest }) => {
     );
 
   const withdrawInterestInLease = async (lease) => {
+    console.log(lease._id);
     await axios
       .delete(
         `http://localhost:5000/api/users/${user.username}/withdraw-interest/${lease._id}`
       )
       .then((res) => {
-        setLeaseInterestedIn([]); // Remove from UI
+        setLeaseInterestedIn((leaseInterestedIn) => {
+          // eslint-disable-next-line array-callback-return
+          const updatedLeases = leaseInterestedIn.filter((leaseToRemove) => {
+            if (lease._id !== leaseToRemove._id) return true;
+          });
+          return updatedLeases;
+        }); // Remove from UI
         withdrawInterest(res.data); // Remove from Database
         console.log(res.data);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err.response.data));
   };
 
   return (
@@ -44,7 +51,8 @@ const InterestedIn = ({ user, closeNav, withdrawInterest }) => {
             </p>
             <p>{lease.address}</p>
             <p>
-              Listed on {lease.dateListed} | Available on {lease.availableDate}
+              Listed on {lease.dateListed} | Available on
+              {lease.availableDate}
             </p>
             <p>Currently leasing for ${lease.rent} per month</p>
             <p>{lease.additionalInfo}</p>

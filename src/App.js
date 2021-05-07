@@ -75,6 +75,20 @@ const App = () => {
       .catch((err) => console.log(err));
   };
 
+  // REPLY TO A MESSAGE
+  const replyMessage = async (id, recipient, text) => {
+    await axios
+      .post(
+        `http:localhost:5000/api/users/${user.username}/reply-message/${id}/${recipient}`,
+        { text }
+      )
+      .then((res) => {
+        setUser(res.data);
+        console.log(res);
+      })
+      .catch((err) => console.log(err.response.data));
+  };
+
   // LOG OUT
   const logOut = () => {
     setIsLoggedIn(false);
@@ -92,6 +106,7 @@ const App = () => {
           deleteLeaseFromDataBase={deleteLeaseFromDataBase}
           indicateInterest={indicateInterest}
           withdrawInterest={withdrawInterest}
+          replyMessage={replyMessage}
         />
       )}
     </>

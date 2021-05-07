@@ -1,37 +1,44 @@
 import { useState } from "react";
 
-const Messages = ({ user, closeNav }) => {
+const Messages = ({ user, closeNav, replyMessage }) => {
   const messages = user.messages;
   const [conversationText, setConversationText] = useState(null);
-  const [replyText, setReplyText] = useState("");
+  const [text, setText] = useState("");
+  const [replyParams, setReplyParams] = useState(null);
 
   const handleReplyText = (e) => {
     console.log(e.target.value);
-    setReplyText(e.target.value);
+    setText(e.target.value);
   };
 
-  const reply = (e) => {
+  const SendReply = (e) => {
     e.preventDefault();
-    console.log(replyText);
+    if (!text) {
+      const { msgId, recipient, text } = replyParams;
+      replyMessage(msgId, recipient, text);
+      console.log(text);
+    }
   };
 
   const replyTextArea = (
-    <form onSubmit={reply}>
+    <form onSubmit={SendReply}>
       <textarea
         name="text"
         rows="5"
         cols="20"
-        value={replyText}
+        value={text}
         onChange={handleReplyText}
       ></textarea>
       <button type="submit">reply</button>
     </form>
   );
 
-  const displayConversationText = (conversation) => {
-    const conversationDetails = conversation.map((convo) => {
+  const displayConversationText = (message) => {
+    setReplyParams({ msgId: message._id, receipient: message.receipient });
+    const conversationDetails = message.conversation.map((convo) => {
       return <p key={convo.text}>{convo.text}</p>;
     });
+
     setConversationText(
       <div>
         <i
@@ -64,7 +71,7 @@ const Messages = ({ user, closeNav }) => {
         {messages.map((message) => {
           return (
             <div key={message._id}>
-              <h6 onClick={() => displayConversationText(message.conversation)}>
+              <h6 onClick={() => displayConversationText(message)}>
                 {message.title}
               </h6>
             </div>

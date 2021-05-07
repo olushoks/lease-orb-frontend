@@ -9,6 +9,7 @@ const HomePage = (props) => {
     deleteLeaseFromDataBase,
     indicateInterest,
     withdrawInterest,
+    replyMessage,
   } = props;
 
   if (!user) return null;
@@ -21,6 +22,7 @@ const HomePage = (props) => {
           logOut={logOut}
           deleteLeaseFromDataBase={deleteLeaseFromDataBase}
           withdrawInterest={withdrawInterest}
+          replyMessage={replyMessage}
         />
         <Main
           user={user}

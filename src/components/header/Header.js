@@ -9,6 +9,7 @@ const Header = ({
   logOut,
   deleteLeaseFromDataBase,
   withdrawInterest,
+  replyMessage,
 }) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [currentNav, setCurrentNav] = useState(null);
@@ -36,7 +37,13 @@ const Header = ({
         setIsNavOpen(true);
         break;
       case "messages":
-        setCurrentNav(<Messages user={user} closeNav={closeNav} />);
+        setCurrentNav(
+          <Messages
+            user={user}
+            closeNav={closeNav}
+            replyMessage={replyMessage}
+          />
+        );
         setIsNavOpen(true);
         break;
       case "logOut":
