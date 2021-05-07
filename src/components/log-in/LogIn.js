@@ -1,6 +1,7 @@
 import { useState } from "react";
 import LogInForm from "./LogInForm";
 import SignUpForm from "./SignUpForm";
+import transformString from "../../helper/stringTransformer";
 
 const LogIn = ({ auth, user, error }) => {
   const [displayLogIn, setDisplayLogIn] = useState(true);
@@ -43,7 +44,7 @@ const LogIn = ({ auth, user, error }) => {
 
     if (username && password) {
       // TRIM SPACES & CONVERT USERNAME TO LOWERCASE
-      username = username.trim().toLowerCase();
+      username = transformString(username);
 
       auth(action, { username, password });
       setUserCredentials({ username: "", password: "" });
