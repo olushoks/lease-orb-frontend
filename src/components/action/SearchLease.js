@@ -1,6 +1,7 @@
 import Map from "../map/Map";
 import { useState } from "react";
 import axios from "axios";
+import getDate from "../../helper/getDateFromDateTime";
 
 import transformString from "../../helper/stringTransformer";
 
@@ -91,8 +92,8 @@ const SearchLease = ({ closeForm, user, indicateInterest }) => {
               </p>
               <p>{result.address}</p>
               <p>
-                Listed on {result.dateListed} | Available on{" "}
-                {result.availableDate}
+                {`Listed on ${getDate(result.dateListed)}`} | Available on
+                {getDate(result.availableDate)}
               </p>
               <p>Currently leasing for ${result.rent} per month</p>
               <p>{result.additionalInfo}</p>

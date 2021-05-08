@@ -1,4 +1,5 @@
 import { useState } from "react";
+import getDate from "../../helper/getDateFromDateTime";
 
 const ListedLease = (props) => {
   const { user, closeNav, deleteLeaseFromDataBase } = props;
@@ -32,14 +33,11 @@ const ListedLease = (props) => {
         return (
           <div key={listedLease._id}>
             <p>
-              {listedLease.name} posted on {listedLease.dateListed}
+              {listedLease.name} posted on {getDate(listedLease.dateListed)}
             </p>
             <p>{listedLease.address}</p>
             <p>Currently leasing for ${listedLease.rent}</p>
-            <p>
-              Available Date:
-              {listedLease.availableDate}
-            </p>
+            <p>{`Available Date: ${getDate(listedLease.availableDate)}`}</p>
             <p>Additional Info: {listedLease.additionalInfo}</p>
             <button onClick={deleteLease}>Delete Lease</button>
           </div>

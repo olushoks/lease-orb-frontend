@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import getDate from "../../helper/getDateFromDateTime";
 
 const InterestedIn = ({ user, closeNav, withdrawInterest }) => {
   const [leaseInterestedIn, setLeaseInterestedIn] = useState(
@@ -51,8 +52,8 @@ const InterestedIn = ({ user, closeNav, withdrawInterest }) => {
             </p>
             <p>{lease.address}</p>
             <p>
-              Listed on {lease.dateListed} | Available on
-              {lease.availableDate}
+              Listed on {getDate(lease.dateListed)} | Available on
+              {getDate(lease.availableDate)}
             </p>
             <p>Currently leasing for ${lease.rent} per month</p>
             <p>{lease.additionalInfo}</p>

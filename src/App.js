@@ -33,6 +33,21 @@ const App = () => {
       });
   };
 
+  //SILENT REFRESH EVERY 5 SECONDS
+  // const refreshUserData = async () => {
+  //   // await axios
+  //   //   .get(`http://localhost:5000/api/users/${user.username}`)
+  //   //   .then(({ data }) => {
+  //   //     console.log(`Silent Refresh`);
+  //   //     setUser(data);
+  //   //   })
+  //   //   .catch((err) => console.log(err));
+  //   console.log(`Refresh`);
+  //   setTimeout(refreshUserData(), 10000);
+  // };
+
+  // //refreshUserData();
+
   // CLEAR ERROR
   const clearError = () => {
     setError(null);
