@@ -1,27 +1,27 @@
 import { useState } from "react";
 
 const Messages = ({ user, closeNav, replyMessage }) => {
-  const messages = user.messages;
-  const [conversationText, setConversationText] = useState(null);
+  const messages = [...user.messages];
+  const [conversationThread, setConversationThread] = useState(null);
   const [text, setText] = useState("");
   const [replyParams, setReplyParams] = useState(null);
 
   const handleReplyText = (e) => {
-    console.log(e.target.value);
     setText(e.target.value);
   };
 
-  const SendReply = (e) => {
+  const sendReply = (e) => {
     e.preventDefault();
-    if (!text) {
-      const { msgId, recipient, text } = replyParams;
+    if (text) {
+      const { msgId, recipient } = replyParams;
       replyMessage(msgId, recipient, text);
-      console.log(text);
+
+      setText("");
     }
   };
 
   const replyTextArea = (
-    <form onSubmit={SendReply}>
+    <form onSubmit={sendReply}>
       <textarea
         name="text"
         rows="5"
@@ -34,16 +34,18 @@ const Messages = ({ user, closeNav, replyMessage }) => {
   );
 
   const displayConversationText = (message) => {
-    setReplyParams({ msgId: message._id, receipient: message.receipient });
+    setReplyParams({ msgId: message._id, recipient: message.recipient });
+
+    // MAP THROUGH ALL CONVERSATION IN CURRENT THREAD
     const conversationDetails = message.conversation.map((convo) => {
       return <p key={convo.text}>{convo.text}</p>;
     });
 
-    setConversationText(
+    setConversationThread(
       <div>
         <i
           className="fas fa-chevron-left"
-          onClick={() => setConversationText(null)}
+          onClick={() => setConversationThread(null)}
         ></i>
         {conversationDetails}
       </div>
@@ -71,14 +73,18 @@ const Messages = ({ user, closeNav, replyMessage }) => {
         {messages.map((message) => {
           return (
             <div key={message._id}>
-              <h6 onClick={() => displayConversationText(message)}>
+              <h6
+                onClick={() => {
+                  displayConversationText(message);
+                }}
+              >
                 {message.title}
               </h6>
             </div>
           );
         })}
-        <>{conversationText}</>
-        {conversationText && replyTextArea}
+        <>{conversationThread}</>
+        {conversationThread && replyTextArea}
       </div>
     </div>
   );
