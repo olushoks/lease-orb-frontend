@@ -3,7 +3,7 @@ import axios from "axios";
 import "./App.css";
 import LogIn from "./components/log-in/LogIn";
 import HomePage from "./components/HomePage";
-// import Map from "./components/map/Map";
+import DisplayReviews from "./components/reviews/DisplayReviews";
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -112,6 +112,7 @@ const App = () => {
   return (
     <>
       {isLoggedIn || <LogIn auth={authenticateUser} error={error} />}
+      {isLoggedIn || <DisplayReviews />}
       {isLoggedIn && (
         <HomePage
           user={user}
