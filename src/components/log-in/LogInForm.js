@@ -30,13 +30,13 @@ const LogInForm = (props) => {
         <button type="submit" className="btn">
           Login
         </button>
+        <p className="guide-text">
+          New user?
+          <span onClick={() => toggleDisplay("createAccount")}>
+            Create Account
+          </span>
+        </p>
       </form>
-      <p className="guide-text">
-        New user?
-        <span onClick={() => toggleDisplay("createAccount")}>
-          Create Account
-        </span>
-      </p>
     </div>
   );
 };

@@ -79,21 +79,25 @@ const AddForm = ({ closeForm, addReview, reviews, user }) => {
     if (!review_text && !star_rating) {
       setError(`You cannot submit empty values`);
       setTimeout(() => setError(""), 2000);
-    }
-    if (!review_text && star_rating) {
+    } else if (!review_text && star_rating) {
       setError(`Enter review before submitting`);
       setTimeout(() => setError(""), 2000);
-    }
-    if (!star_rating && review_text) {
+    } else if (!star_rating && review_text) {
       setError(`click on the stars to give a rating`);
       setTimeout(() => setError(""), 2000);
-    }
-    if (review_text && star_rating) {
+    } else {
       console.log(reviewDetails);
       setReviewDetails({ review_text: "", star_rating: 0 });
       setStarRatings(stars);
       addReview(reviewDetails);
     }
+
+    // if (review_text && star_rating) {
+    //   console.log(reviewDetails);
+    //   setReviewDetails({ review_text: "", star_rating: 0 });
+    //   setStarRatings(stars);
+    //   addReview(reviewDetails);
+    // }
   };
 
   return (

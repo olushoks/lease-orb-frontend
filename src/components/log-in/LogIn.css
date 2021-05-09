@@ -1,13 +1,32 @@
 .form-div {
-  position: fixed;
+  /* position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%); */
+
+  width: 30vw;
+  /* width: 20rem; */
+  /* height: 30rem; */
+  height: 70vh;
+  margin: 15vh 2rem 15vh 2rem;
+  padding: 1em;
+  box-sizing: border-box;
+  background: #dddde6;
+  float: left;
+}
+
+.form-input {
+  position: relative;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  margin-bottom: 5rem;
+  float: left;
 }
 
 input {
   display: block;
-  margin-bottom: 1rem;
+  margin: 1rem;
   width: 15rem;
   height: 2rem;
   padding: 0.2rem 0.5rem;
@@ -15,6 +34,7 @@ input {
 }
 
 .btn {
+  width: 15rem;
   text-align: center;
   padding: 0.5rem 2.5rem;
   margin-bottom: 0.5rem;
@@ -23,10 +43,6 @@ input {
   border: none;
   cursor: pointer;
 }
-
-/* .guide-text {
-  font-style: italic;
-} */
 
 .guide-text span {
   text-decoration: underline;
