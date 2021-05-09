@@ -1,7 +1,7 @@
 import { useState } from "react";
 import DisplayReviews from "../reviews/DisplayReviews";
 
-const AddForm = ({ closeForm, user }) => {
+const AddForm = ({ closeForm, addReview, reviews, user }) => {
   const clickStar = (num) => {
     let updatedStarRating = [];
     for (let i = 0; i < 5; i++) {
@@ -63,6 +63,7 @@ const AddForm = ({ closeForm, user }) => {
   const [error, setError] = useState("");
   const [starRatings, setStarRatings] = useState(stars);
   const [reviewDetails, setReviewDetails] = useState({
+    review_by: user.username,
     review_text: "",
     star_rating: 0,
   });
@@ -76,7 +77,7 @@ const AddForm = ({ closeForm, user }) => {
     e.preventDefault();
     const { review_text, star_rating } = reviewDetails;
     if (!review_text && !star_rating) {
-      setError(`Empty Values`);
+      setError(`You cannot submit empty values`);
       setTimeout(() => setError(""), 2000);
     }
     if (!review_text && star_rating) {
@@ -89,8 +90,9 @@ const AddForm = ({ closeForm, user }) => {
     }
     if (review_text && star_rating) {
       console.log(reviewDetails);
-      setReviewDetails({ review_text: "", star_rating: null });
+      setReviewDetails({ review_text: "", star_rating: 0 });
       setStarRatings(stars);
+      addReview(reviewDetails);
     }
   };
 
@@ -110,7 +112,7 @@ const AddForm = ({ closeForm, user }) => {
         <button>Submit Review</button>
       </form>
       <hr></hr>
-      <div>{<DisplayReviews />}</div>
+      <div>{<DisplayReviews reviews={reviews} />}</div>
     </>
   );
 };

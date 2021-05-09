@@ -10,6 +10,8 @@ const HomePage = (props) => {
     indicateInterest,
     withdrawInterest,
     replyMessage,
+    addReview,
+    reviews,
   } = props;
 
   if (!user) return null;
@@ -28,6 +30,8 @@ const HomePage = (props) => {
           user={user}
           submitLease={submitLease}
           indicateInterest={indicateInterest}
+          addReview={addReview}
+          reviews={reviews}
         />
       </>
     );

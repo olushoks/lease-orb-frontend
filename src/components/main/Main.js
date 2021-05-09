@@ -4,18 +4,18 @@ import SearchLease from "../action/SearchLease";
 import AddReview from "../action/AddReview";
 import { useState } from "react";
 
-const Main = ({ user, submitLease, indicateInterest }) => {
+const Main = ({ user, submitLease, indicateInterest, addReview, reviews }) => {
   const [showActionBtn, setShowActionBtn] = useState(true);
   const [listLease, setListLease] = useState(false);
   const [leaseSearch, setLeaseSearch] = useState(false);
-  const [reviews, setReviews] = useState(false);
+  const [showReviews, setshowReviews] = useState(false);
   const [error, setError] = useState(null);
 
   const closeForm = () => {
     setShowActionBtn(true);
     setListLease(false);
     setLeaseSearch(false);
-    setReviews(false);
+    setshowReviews(false);
   };
 
   // IF USER ALREADY HAS AN ACTIVE LEASE, PREVENT FROM ADDING ANOTHER ONE
@@ -45,7 +45,7 @@ const Main = ({ user, submitLease, indicateInterest }) => {
         setShowActionBtn(false);
         break;
       case "reviews":
-        setReviews(true);
+        setshowReviews(true);
         setShowActionBtn(false);
         break;
       default:
@@ -80,7 +80,14 @@ const Main = ({ user, submitLease, indicateInterest }) => {
           indicateInterest={indicateInterest}
         />
       )}
-      {reviews && <AddReview closeForm={closeForm} />}
+      {showReviews && (
+        <AddReview
+          closeForm={closeForm}
+          addReview={addReview}
+          user={user}
+          reviews={reviews}
+        />
+      )}
     </div>
   );
 };

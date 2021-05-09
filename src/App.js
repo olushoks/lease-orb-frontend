@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import "./App.css";
 import LogIn from "./components/log-in/LogIn";
@@ -9,6 +9,7 @@ const App = () => {
   const [user, setUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [error, setError] = useState(null);
+  const [reviews, setReviews] = useState(null);
 
   // LOGIN <---> SIGN UP
   const authenticateUser = async (action, userCredentials) => {
@@ -31,6 +32,28 @@ const App = () => {
         setError(err.response.data);
         setTimeout(clearError, 3000);
       });
+  };
+
+  // FETCH REVIEWS WHEN COMPONENT MOUNTS
+  useEffect(() => {
+    // FETCH REVIEWS
+    const fetchReviews = async () => {
+      axios.get("http://localhost:5000/api/reviews").then(({ data }) => {
+        setReviews(data);
+      });
+    };
+
+    fetchReviews();
+  }, []);
+
+  // ADD REVIEW
+  const addReview = async (review) => {
+    await axios
+      .post(
+        `http://localhost:5000/api/reviews/add_review/${user.username}`,
+        review
+      )
+      .then((res) => setReviews(res.data));
   };
 
   //SILENT REFRESH EVERY 5 SECONDS
@@ -112,7 +135,7 @@ const App = () => {
   return (
     <>
       {isLoggedIn || <LogIn auth={authenticateUser} error={error} />}
-      {isLoggedIn || <DisplayReviews />}
+      {isLoggedIn || <DisplayReviews reviews={reviews} />}
       {isLoggedIn && (
         <HomePage
           user={user}
@@ -122,6 +145,8 @@ const App = () => {
           indicateInterest={indicateInterest}
           withdrawInterest={withdrawInterest}
           replyMessage={replyMessage}
+          addReview={addReview}
+          reviews={reviews}
         />
       )}
     </>

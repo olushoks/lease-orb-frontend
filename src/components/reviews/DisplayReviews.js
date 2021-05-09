@@ -1,23 +1,9 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+// import axios from "axios";
+// import { useEffect, useState } from "react";
 import getDate from "../../helper/getDateFromDateTime";
 
-const DisplayReviews = () => {
-  const [reviews, setReviews] = useState(null);
-
-  useEffect(() => {
-    // FETCH REVIEWS
-    const fetchReviews = async () => {
-      axios.get("http://localhost:5000/api/reviews").then(({ data }) => {
-        setReviews(data);
-      });
-    };
-
-    fetchReviews();
-  }, []);
-
+const DisplayReviews = ({ reviews }) => {
   // STARS
-
   const goldStars = (rating) => {
     let starRatings = [];
 
@@ -51,8 +37,10 @@ const DisplayReviews = () => {
           <div key={review._id}>
             <div>{goldStars(review.star_rating)}</div>
             <p>{review.review_text}</p>
-            <small>{review.review_by}</small>
-            <small>{getDate(review.review_date)}</small>
+            <small>
+              {review.review_by} | {getDate(review.review_date)}
+            </small>
+            {/* <small>{getDate(review.review_date)}</small> */}
           </div>
         );
       })}
