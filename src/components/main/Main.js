@@ -1,18 +1,21 @@
 import "./Main.css";
 import ListLease from "../action/ListLease";
 import SearchLease from "../action/SearchLease";
+import AddReview from "../action/AddReview";
 import { useState } from "react";
 
 const Main = ({ user, submitLease, indicateInterest }) => {
   const [showActionBtn, setShowActionBtn] = useState(true);
   const [listLease, setListLease] = useState(false);
   const [leaseSearch, setLeaseSearch] = useState(false);
+  const [reviews, setReviews] = useState(false);
   const [error, setError] = useState(null);
 
   const closeForm = () => {
     setShowActionBtn(true);
     setListLease(false);
     setLeaseSearch(false);
+    setReviews(false);
   };
 
   // IF USER ALREADY HAS AN ACTIVE LEASE, PREVENT FROM ADDING ANOTHER ONE
@@ -36,11 +39,13 @@ const Main = ({ user, submitLease, indicateInterest }) => {
     switch (action) {
       case "listALease":
         checkForActiveLease();
-        // setAction(true);
-        // setShowActionBtn(false);
         break;
       case "searchLease":
         setLeaseSearch(true);
+        setShowActionBtn(false);
+        break;
+      case "reviews":
+        setReviews(true);
         setShowActionBtn(false);
         break;
       default:
@@ -53,13 +58,16 @@ const Main = ({ user, submitLease, indicateInterest }) => {
       {showActionBtn && (
         <>
           <p>Welcome {user.username}, what would you like to do today?</p>
+          <div>{error}</div>
           <button className="btn" onClick={() => handleClick("listALease")}>
             List A Lease
           </button>
           <button className="btn" onClick={() => handleClick("searchLease")}>
             Search Available Leases
           </button>
-          {<div>{error}</div>}
+          <button className="btn" onClick={() => handleClick("reviews")}>
+            REVIEWS
+          </button>
         </>
       )}
       {listLease && (
@@ -72,6 +80,7 @@ const Main = ({ user, submitLease, indicateInterest }) => {
           indicateInterest={indicateInterest}
         />
       )}
+      {reviews && <AddReview closeForm={closeForm} />}
     </div>
   );
 };

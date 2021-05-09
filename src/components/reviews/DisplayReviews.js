@@ -16,23 +16,30 @@ const DisplayReviews = () => {
     fetchReviews();
   }, []);
 
-  // // STARS
-  // const stars = Array(5).fill(<i className="far fa-star"></i>);
+  // STARS
 
   const goldStars = (rating) => {
-    let startRatings = [];
+    let starRatings = [];
 
     for (let i = 0; i < 5; i++) {
       i < rating
-        ? startRatings.push(
-            <i className="fas fa-star" style={{ color: "gold" }}></i>
+        ? starRatings.push(
+            <i
+              className="fas fa-star"
+              key={i + 1}
+              style={{ color: "gold" }}
+            ></i>
           )
-        : startRatings.push(
-            <i className="fas fa-star" style={{ color: "gray" }}></i>
+        : starRatings.push(
+            <i
+              className="fas fa-star"
+              key={i + 1}
+              style={{ color: "gray" }}
+            ></i>
           );
     }
 
-    return startRatings;
+    return starRatings;
   };
 
   if (!reviews) return <p>No reviews!</p>;
@@ -42,7 +49,7 @@ const DisplayReviews = () => {
       {reviews.map((review) => {
         return (
           <div key={review._id}>
-            <div>{goldStars(3)}</div>
+            <div>{goldStars(review.star_rating)}</div>
             <p>{review.review_text}</p>
             <small>{review.review_by}</small>
             <small>{getDate(review.review_date)}</small>
