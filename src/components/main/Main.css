@@ -8,3 +8,21 @@
 .btn {
   margin: 1rem 0.3rem 0 0.3rem;
 }
+
+.greeting {
+  text-align: center;
+  font-size: 1rem;
+}
+
+.user-name {
+  font-size: 1.5rem;
+}
+
+.action {
+  text-transform: uppercase;
+}
+
+.error {
+  border-left: 0.3rem solid red;
+  padding-left: 0.3rem;
+}

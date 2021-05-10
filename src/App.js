@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import "./App.css";
 import LogIn from "./components/log-in/LogIn";
-import HomePage from "./components/HomePage";
+import HomePage from "./components/homepage/HomePage";
 import DisplayReviews from "./components/reviews/DisplayReviews";
 
 const App = () => {

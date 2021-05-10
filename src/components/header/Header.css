@@ -9,8 +9,9 @@
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
-  border-bottom: 0.5rem solid #000000;
-  font-size: 2rem;
+  font-size: 4rem;
+  text-decoration: underline;
+  color: #6f0fa7;
 }
 
 .nav-section {
@@ -26,7 +27,12 @@
   padding-right: 1rem;
   text-align: right;
   margin: 0 0.2rem 0 0.2rem;
-  text-decoration: underline;
+  color: #000000;
+  /* color: #6f0fa7; */
+}
+
+.nav-bar-text {
+  padding-right: 0.5rem;
 }
 
 li {
