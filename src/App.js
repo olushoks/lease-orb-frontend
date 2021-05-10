@@ -133,7 +133,8 @@ const App = () => {
   };
 
   return (
-    <>
+    <div className="app-main">
+      {/* {isLoggedIn || <h3 className="logo-text">lease-orb</h3>} */}
       {isLoggedIn || <LogIn auth={authenticateUser} error={error} />}
       {isLoggedIn || <DisplayReviews reviews={reviews} />}
       {isLoggedIn && (
@@ -149,7 +150,7 @@ const App = () => {
           reviews={reviews}
         />
       )}
-    </>
+    </div>
   );
 };
 

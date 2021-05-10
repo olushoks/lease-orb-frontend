@@ -1,0 +1,20 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.review-section {
+  /* float: right; */
+  width: 90vw;
+  /* height: 90vh; */
+  margin: 5vh 2rem 5vh 2rem;
+}
+
+.review-by-date {
+  /* font-family: "Sacramento", cursive; */
+  font-family: "Cookie", cursive;
+  font-size: 1.2rem;
+  text-align: right;
+  color: rgb(111, 15, 167);
+}

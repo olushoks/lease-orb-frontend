@@ -1,5 +1,4 @@
-// import axios from "axios";
-// import { useEffect, useState } from "react";
+import "./DisplayReviews.css";
 import getDate from "../../helper/getDateFromDateTime";
 
 const DisplayReviews = ({ reviews }) => {
@@ -34,13 +33,12 @@ const DisplayReviews = ({ reviews }) => {
     <section>
       {reviews.map((review) => {
         return (
-          <div key={review._id}>
+          <div key={review._id} className="review-section">
             <div>{goldStars(review.star_rating)}</div>
             <p>{review.review_text}</p>
-            <small>
+            <small className="review-by-date">
               {review.review_by} | {getDate(review.review_date)}
             </small>
-            {/* <small>{getDate(review.review_date)}</small> */}
           </div>
         );
       })}

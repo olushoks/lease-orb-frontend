@@ -1,3 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .form-div {
   width: 30vw;
   height: 70vh;
@@ -6,6 +12,8 @@
   box-sizing: border-box;
   background: #dddde6;
   float: left;
+  border-left: solid #6f0fa7;
+  border-radius: 0 1rem 0 1rem;
 }
 
 .form-input {
@@ -32,7 +40,7 @@ input {
   padding: 0.5rem 2.5rem;
   margin-bottom: 0.5rem;
   color: #c7dcee;
-  background-color: #0d2942;
+  background-color: #6f0fa7;
   border: none;
   cursor: pointer;
 }
