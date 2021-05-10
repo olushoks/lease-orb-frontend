@@ -1,0 +1,15 @@
+.msg-section {
+  position: fixed;
+  right: 17.25%;
+  top: 18%;
+  background-color: rgb(112, 15, 169, 0.1);
+  border-radius: 0 1rem 1rem 1rem;
+  padding: 2rem;
+}
+
+.close-thread {
+  position: fixed;
+  right: 17.5%;
+  top: 18.5%;
+  color: #700fa9;
+}

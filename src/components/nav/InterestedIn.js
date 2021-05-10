@@ -2,6 +2,8 @@ import axios from "axios";
 import { useState } from "react";
 import getDate from "../../helper/getDateFromDateTime";
 
+import "./nav.css";
+
 const InterestedIn = ({ user, closeNav, withdrawInterest }) => {
   const [leaseInterestedIn, setLeaseInterestedIn] = useState(
     user.leaseInterestedIn
@@ -40,15 +42,16 @@ const InterestedIn = ({ user, closeNav, withdrawInterest }) => {
   };
 
   return (
-    <div>
+    <div className="nav-current">
       <span onClick={closeNav}>
-        <i className="fas fa-window-close"></i>
+        <i className="fas fa-window-close close-btn"></i>
       </span>
       {leaseInterestedIn.map((lease) => {
         return (
           <div key={lease._id}>
             <p>
-              {lease.name} posted by {lease.postedBy}
+              {lease.name}
+              <span className="italic"> posted by {lease.postedBy}</span>
             </p>
             <p>{lease.address}</p>
             <p>
@@ -56,11 +59,13 @@ const InterestedIn = ({ user, closeNav, withdrawInterest }) => {
               {getDate(lease.availableDate)}
             </p>
             <p>Currently leasing for ${lease.rent} per month</p>
-            <p>{lease.additionalInfo}</p>
-            <button onClick={() => withdrawInterestInLease(lease)}>
+            <p>Additional info: {lease.additionalInfo}</p>
+            <button
+              className="delete-btn"
+              onClick={() => withdrawInterestInLease(lease)}
+            >
               Withdraw Interest
             </button>
-            <br></br>
           </div>
         );
       })}

@@ -1,4 +1,6 @@
 import { useState } from "react";
+import "./nav.css";
+import "./Messages.css";
 
 const Messages = ({ user, closeNav, replyMessage }) => {
   const messages = [...user.messages];
@@ -37,19 +39,19 @@ const Messages = ({ user, closeNav, replyMessage }) => {
     setReplyParams({ msgId: message._id, recipient: message.recipient });
 
     // MAP THROUGH ALL CONVERSATION IN CURRENT THREAD
-    const conversationDetails = message.conversation.map((convo) => {
-      return <p key={convo.text}>{convo.text}</p>;
-    });
-
-    setConversationThread(
-      <div>
+    const conversationDetails = (
+      <div className="msg-section">
         <i
-          className="fas fa-chevron-left"
+          className="fas fa-chevron-right close-thread"
           onClick={() => setConversationThread(null)}
         ></i>
-        {conversationDetails}
+        {message.conversation.map((convo) => {
+          return <p key={convo.text}>{convo.text}</p>;
+        })}
       </div>
     );
+
+    setConversationThread(<div>{conversationDetails}</div>);
   };
 
   if (!messages) return null;
@@ -65,9 +67,12 @@ const Messages = ({ user, closeNav, replyMessage }) => {
     );
 
   return (
-    <div>
+    <div className="nav-current" style={{ left: "83%" }}>
       <span onClick={closeNav}>
-        <i className="fas fa-window-close"></i>
+        <i
+          className="fas fa-window-close close-btn"
+          style={{ left: "82%" }}
+        ></i>
       </span>
       <div>
         {messages.map((message) => {

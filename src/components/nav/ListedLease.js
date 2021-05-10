@@ -1,6 +1,8 @@
 import { useState } from "react";
 import getDate from "../../helper/getDateFromDateTime";
 
+import "./nav.css";
+
 const ListedLease = (props) => {
   const { user, closeNav, deleteLeaseFromDataBase } = props;
   // const [listedLease] = user.listedLease;
@@ -25,9 +27,9 @@ const ListedLease = (props) => {
   }
 
   return (
-    <>
+    <div className="nav-current">
       <span onClick={closeNav}>
-        <i className="fas fa-window-close"></i>
+        <i className="fas fa-window-close close-btn"></i>
       </span>
       {listedLease.map((listedLease) => {
         return (
@@ -39,11 +41,17 @@ const ListedLease = (props) => {
             <p>Currently leasing for ${listedLease.rent}</p>
             <p>{`Available Date: ${getDate(listedLease.availableDate)}`}</p>
             <p>Additional Info: {listedLease.additionalInfo}</p>
-            <button onClick={deleteLease}>Delete Lease</button>
+            <button
+              className="delete-btn"
+              style={{ right: "-50%" }}
+              onClick={deleteLease}
+            >
+              Delete Lease
+            </button>
           </div>
         );
       })}
-    </>
+    </div>
   );
 };
 
