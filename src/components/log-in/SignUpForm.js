@@ -1,3 +1,5 @@
+import "./LogIn.css";
+
 const SignUpForm = (props) => {
   const {
     username,
@@ -31,11 +33,11 @@ const SignUpForm = (props) => {
         <button type="submit" className="btn">
           Create Account
         </button>
+        <p className="guide-text">
+          Already a user?
+          <span onClick={() => toggleDisplay("login")}>Login</span>
+        </p>
       </form>
-      <p className="guide-text">
-        Already a user?
-        <span onClick={() => toggleDisplay("login")}>Login</span>
-      </p>
     </div>
   );
 };
