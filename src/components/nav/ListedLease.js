@@ -17,12 +17,12 @@ const ListedLease = (props) => {
 
   if (!listedLease || listedLease.length < 1) {
     return (
-      <>
+      <div className="nav-current">
         <span onClick={closeNav}>
-          <i className="fas fa-window-close"></i>
+          <i className="fas fa-window-close close-btn"></i>
         </span>
         <p>You do not have any listed lease</p>
-      </>
+      </div>
     );
   }
 

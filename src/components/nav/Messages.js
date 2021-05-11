@@ -23,16 +23,19 @@ const Messages = ({ user, closeNav, replyMessage }) => {
   };
 
   const replyTextArea = (
-    <form onSubmit={sendReply}>
-      <textarea
-        name="text"
-        rows="5"
-        cols="20"
-        value={text}
-        onChange={handleReplyText}
-      ></textarea>
-      <button type="submit">reply</button>
-    </form>
+    <div>
+      <form onSubmit={sendReply}>
+        <textarea
+          name="text"
+          rows="5"
+          cols="20"
+          value={text}
+          className="text-area"
+          onChange={handleReplyText}
+        ></textarea>
+        <button type="submit">reply</button>
+      </form>
+    </div>
   );
 
   const displayConversationText = (message) => {
@@ -40,20 +43,29 @@ const Messages = ({ user, closeNav, replyMessage }) => {
 
     // MAP THROUGH ALL CONVERSATION IN CURRENT THREAD
     const conversationDetails = (
-      <div className="msg-section">
-        <i
-          className="fas fa-chevron-right close-thread"
-          onClick={() => setConversationThread(null)}
-        ></i>
-        {message.conversation.map((convo) => {
-          return <p key={convo.text}>{convo.text}</p>;
-        })}
-      </div>
+      <>
+        <div className="msg-section">
+          <i
+            className="fas fa-chevron-right close-thread"
+            onClick={() => setConversationThread(null)}
+          ></i>
+          {message.conversation.map((convo) => {
+            let type = convo.type === "received" ? "left" : "right";
+
+            return (
+              <p key={convo.text} className={type}>
+                {convo.text}
+              </p>
+            );
+          })}
+        </div>
+      </>
     );
 
     setConversationThread(<div>{conversationDetails}</div>);
   };
 
+  //********RENDER */
   if (!messages) return null;
 
   if (messages.length === 0)
@@ -78,18 +90,20 @@ const Messages = ({ user, closeNav, replyMessage }) => {
         {messages.map((message) => {
           return (
             <div key={message._id}>
-              <h6
+              <p
+                className="msg-title"
                 onClick={() => {
                   displayConversationText(message);
                 }}
               >
+                <i className="fas fa-comment-alt msg-icon"></i>
                 {message.title}
-              </h6>
+              </p>
             </div>
           );
         })}
-        <>{conversationThread}</>
-        {conversationThread && replyTextArea}
+        {/* {conversationThread} */}
+        {conversationThread}
       </div>
     </div>
   );
