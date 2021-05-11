@@ -3,6 +3,8 @@ import { useState } from "react";
 import axios from "axios";
 import getDate from "../../helper/getDateFromDateTime";
 
+import "./SearchLease.css";
+
 import transformString from "../../helper/stringTransformer";
 
 const SearchLease = ({ closeForm, user, indicateInterest }) => {
@@ -63,16 +65,17 @@ const SearchLease = ({ closeForm, user, indicateInterest }) => {
     setError(null);
   };
 
-  const searchBar = (
+  const searchField = (
     <>
       <input
         type="search"
         placeholder="search by city or zip"
         value={searchCriteria}
         onChange={handleChange}
+        className="input-field"
       ></input>
-      <button type="submit" onClick={handleSearch}>
-        Search
+      <button className="search-btn" type="submit" onClick={handleSearch}>
+        <i className="fas fa-search-location"></i>
       </button>
     </>
   );
@@ -110,11 +113,11 @@ const SearchLease = ({ closeForm, user, indicateInterest }) => {
 
   return (
     <>
-      <span onClick={closeForm}>
+      <span onClick={closeForm} className="close">
         <i className="fas fa-window-close"></i>
       </span>
       <div>{searchResult && <Map searchResult={searchResult} />}</div>
-      <div>{searchBar}</div>
+      <div>{searchField}</div>
       <p>{error}</p>
       <div>{searchResult && displayResult}</div>
     </>
