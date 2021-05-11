@@ -85,22 +85,27 @@ const SearchLease = ({ closeForm, user, indicateInterest }) => {
   if (searchResult) {
     displayResult =
       searchResult.length === 0 ? (
-        <>No results found. Please refine your search</>
+        <div className="lease-result">
+          No results found. Please refine your search
+        </div>
       ) : (
         searchResult.map((result) => {
           return (
-            <div>
+            <div className="lease-result">
               <p>
                 {result.name} posted by {result.postedBy}
               </p>
               <p>{result.address}</p>
               <p>
-                {`Listed on ${getDate(result.dateListed)}`} | Available on
-                {getDate(result.availableDate)}
+                {`Listed on ${getDate(result.dateListed)}`} |
+                {` Available on ${getDate(result.availableDate)}`}
               </p>
               <p>Currently leasing for ${result.rent} per month</p>
-              <p>{result.additionalInfo}</p>
-              <button onClick={() => indicateInterestInLease(result)}>
+              <p>Additional info: {result.additionalInfo}</p>
+              <button
+                className="indicate-interest-btn"
+                onClick={() => indicateInterestInLease(result)}
+              >
                 Indicate Interest
               </button>
 
@@ -112,15 +117,15 @@ const SearchLease = ({ closeForm, user, indicateInterest }) => {
   }
 
   return (
-    <>
+    <div className="search-result-section">
       <span onClick={closeForm} className="close">
         <i className="fas fa-window-close"></i>
       </span>
-      <div>{searchResult && <Map searchResult={searchResult} />}</div>
       <div>{searchField}</div>
+      <div>{searchResult && <Map searchResult={searchResult} />}</div>
       <p>{error}</p>
       <div>{searchResult && displayResult}</div>
-    </>
+    </div>
   );
 };
 
