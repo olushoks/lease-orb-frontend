@@ -11,7 +11,7 @@
   position: fixed;
   top: 15%;
   left: 70%;
-  background-color: rgb(112, 15, 169, 0.1);
+  background-color: rgba(112, 15, 169, 0.1);
   padding: 0.7rem;
   height: auto;
   border-radius: 0 1rem 1rem 1rem;
@@ -19,7 +19,7 @@
 
 .delete-btn {
   background-color: transparent;
-  border: 0.2rem sold #6f0fa7;
+  border: 0.1rem solid #6f0fa7;
   border-radius: 0.3rem;
   color: #6f0fa7;
   width: 8rem;

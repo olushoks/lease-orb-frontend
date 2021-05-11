@@ -28,7 +28,6 @@ const SearchLease = ({ closeForm, user, indicateInterest }) => {
         )
         .then(({ data }) => {
           setSearchResult(data);
-          console.log(data);
         })
         .catch((err) => console.log(err));
       setSearchCriteria("");
@@ -123,7 +122,7 @@ const SearchLease = ({ closeForm, user, indicateInterest }) => {
       </span>
       <div>{searchField}</div>
       <div>{searchResult && <Map searchResult={searchResult} />}</div>
-      <p>{error}</p>
+      <p className="error">{error}</p>
       <div>{searchResult && displayResult}</div>
     </div>
   );

@@ -27,11 +27,12 @@
 
 input {
   display: block;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   width: 15rem;
   height: 2.5rem;
   padding: 0.2rem 0.5rem;
   color: #0d2942;
+  border: 0.15rem solid #6f0fa7;
 }
 
 .btn {

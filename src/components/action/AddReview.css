@@ -1,0 +1,42 @@
+.close-reviews {
+  font-size: 1rem;
+  color: #6f0fa7;
+  cursor: pointer;
+}
+
+.review {
+  position: relative;
+  transform: translateX(15%);
+  width: 50%;
+}
+
+.review-form {
+  position: relative;
+  left: 60%;
+}
+
+.text-box {
+  border: 0.1rem solid #6f0fa7;
+  resize: none;
+  display: block;
+  height: 5rem;
+  width: 20rem;
+  margin: 0.3rem 0;
+  padding: 0.2rem;
+}
+
+.review-error {
+  border-left: 0.3rem solid red;
+  padding-left: 0.3rem;
+  margin-top: 2rem;
+}
+
+.review-submit-btn {
+  background-color: #6f0fa7;
+  color: #ffffff;
+  padding: 0.2rem 0.5rem;
+  position: relative;
+  right: -50%;
+  border-radius: 0.2rem 0.3rem;
+  cursor: pointer;
+}

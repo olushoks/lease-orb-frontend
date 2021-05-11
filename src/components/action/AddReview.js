@@ -1,6 +1,9 @@
 import { useState } from "react";
 import DisplayReviews from "../reviews/DisplayReviews";
 
+import "../reviews/DisplayReviews.css";
+import "./AddReview.css";
+
 const AddForm = ({ closeForm, addReview, reviews, user }) => {
   const clickStar = (num) => {
     let updatedStarRating = [];
@@ -91,33 +94,29 @@ const AddForm = ({ closeForm, addReview, reviews, user }) => {
       setStarRatings(stars);
       addReview(reviewDetails);
     }
-
-    // if (review_text && star_rating) {
-    //   console.log(reviewDetails);
-    //   setReviewDetails({ review_text: "", star_rating: 0 });
-    //   setStarRatings(stars);
-    //   addReview(reviewDetails);
-    // }
   };
 
   return (
-    <>
-      <span onClick={closeForm}>
+    <div className="review">
+      <span className="close-reviews" onClick={closeForm}>
         <i className="fas fa-window-close"></i>
       </span>
-      <p>{error}</p>
-      {starRatings}
-      <form onSubmit={submitReview}>
-        <textarea
-          name="review_text"
-          value={reviewDetails.review_text}
-          onChange={handleChange}
-        ></textarea>
-        <button>Submit Review</button>
-      </form>
+      <div className="review-form">
+        <p className="review-error">{error}</p>
+        {starRatings}
+        <form onSubmit={submitReview}>
+          <textarea
+            name="review_text"
+            value={reviewDetails.review_text}
+            className="text-box"
+            onChange={handleChange}
+          ></textarea>
+          <button className="review-submit-btn">Submit Review</button>
+        </form>
+      </div>
       <hr></hr>
       <div>{<DisplayReviews reviews={reviews} />}</div>
-    </>
+    </div>
   );
 };
 

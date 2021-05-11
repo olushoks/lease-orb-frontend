@@ -24,26 +24,28 @@ const Map = ({ searchResult }) => {
   // MAP WRAPPER
   const MapWithAMarker = withScriptjs(
     withGoogleMap((props) => (
-      <>
+      <div>
         <GoogleMap
           defaultZoom={12}
           defaultCenter={{ lat: mapPosition.lat, lng: mapPosition.lng }}
         >
-          {searchResult.map((result) => {
-            return (
-              <Marker
-                draggable={false}
-                position={{ lat: result.lat, lng: result.lng }}
-                key={result.lat + result.lng}
-              >
-                <InfoWindow>
-                  <div>{result.name}</div>
-                </InfoWindow>
-              </Marker>
-            );
-          })}
+          {!searchResult
+            ? null
+            : searchResult.map((result) => {
+                return (
+                  <Marker
+                    draggable={false}
+                    position={{ lat: result.lat, lng: result.lng }}
+                    key={result.lat + result.lng}
+                  >
+                    <InfoWindow>
+                      <div>{result.name}</div>
+                    </InfoWindow>
+                  </Marker>
+                );
+              })}
         </GoogleMap>
-      </>
+      </div>
     ))
   );
 

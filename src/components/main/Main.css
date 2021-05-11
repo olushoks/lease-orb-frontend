@@ -27,4 +27,5 @@
 .error {
   border-left: 0.3rem solid red;
   padding-left: 0.3rem;
+  margin-top: 2rem;
 }

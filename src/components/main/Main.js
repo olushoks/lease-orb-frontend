@@ -24,7 +24,7 @@ const Main = ({ user, submitLease, indicateInterest, addReview, reviews }) => {
       setError(
         "You are not allowed to have more than one active lease! Go to your ListedLease to delete to continue"
       );
-      setTimeout(clearError, 3000);
+      setTimeout(clearError, 5000);
     } else {
       setListLease(true);
       setShowActionBtn(false);
