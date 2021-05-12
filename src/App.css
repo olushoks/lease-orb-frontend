@@ -1,4 +1,4 @@
-app-main {
+.app-main {
   margin-bottom: 3rem;
 }
 
@@ -7,4 +7,16 @@ app-main {
   font-family: "Cookie", cursive;
   font-size: 4rem;
   color: rgb(111, 15, 167);
+}
+
+.landing-page-review {
+  position: fixed;
+  left: 40%;
+  top: 20%;
+}
+
+.log-in {
+  position: fixed;
+  left: 8%;
+  top: 5%;
 }

@@ -135,8 +135,12 @@ const App = () => {
   return (
     <div className="app-main">
       {/* {isLoggedIn || <h3 className="logo-text">lease-orb</h3>} */}
-      {isLoggedIn || <LogIn auth={authenticateUser} error={error} />}
-      {isLoggedIn || <DisplayReviews reviews={reviews} />}
+      <div className="log-in">
+        {isLoggedIn || <LogIn auth={authenticateUser} error={error} />}
+      </div>
+      <div className="landing-page-review">
+        {isLoggedIn || <DisplayReviews reviews={reviews} />}
+      </div>
       {isLoggedIn && (
         <HomePage
           user={user}

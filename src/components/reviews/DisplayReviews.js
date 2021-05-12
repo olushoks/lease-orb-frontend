@@ -36,9 +36,9 @@ const DisplayReviews = ({ reviews }) => {
           <div key={review._id} className="review-section">
             <div>{goldStars(review.star_rating)}</div>
             <blockquote>
-              <i className="fas fa-quote-left"></i>
+              {/* <i className="fas fa-quote-left"></i> */}
               {review.review_text}
-              <i className="fas fa-quote-right"></i>
+              {/* <i className="fas fa-quote-right"></i> */}
             </blockquote>
             <small className="review-by-date">
               {review.review_by} | {getDate(review.review_date)}
