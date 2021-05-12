@@ -4,9 +4,11 @@
 
 .logo-text {
   text-align: center;
-  font-family: "Cookie", cursive;
-  font-size: 4rem;
-  color: rgb(111, 15, 167);
+  font-size: 5rem;
+  color: #6f0fa7;
+
+  padding: 0.3rem 0.5rem;
+  text-decoration: underline;
 }
 
 .landing-page-review {

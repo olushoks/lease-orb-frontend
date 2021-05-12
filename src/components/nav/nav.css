@@ -3,13 +3,13 @@
   color: #6f0fa7;
   position: fixed;
   left: 69%;
-  top: 15%;
+  top: 20%;
   cursor: pointer;
 }
 
 .nav-current {
   position: fixed;
-  top: 15%;
+  top: 20%;
   left: 70%;
   background-color: rgba(112, 15, 169, 0.1);
   padding: 0.7rem;

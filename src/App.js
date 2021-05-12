@@ -134,7 +134,7 @@ const App = () => {
 
   return (
     <div className="app-main">
-      {/* {isLoggedIn || <h3 className="logo-text">lease-orb</h3>} */}
+      {isLoggedIn || <h3 className="logo-text">lease-orb</h3>}
       <div className="log-in">
         {isLoggedIn || <LogIn auth={authenticateUser} error={error} />}
       </div>
