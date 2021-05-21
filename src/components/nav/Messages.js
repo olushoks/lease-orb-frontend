@@ -64,50 +64,9 @@ const Messages = ({ user, closeNav, replyMessage }) => {
     }
   };
 
-  // const replyTextArea = (
-  //   <div>
-  //     <form onSubmit={sendReply}>
-  //       <textarea
-  //         name="text"
-  //         rows="5"
-  //         cols="20"
-  //         value={text}
-  //         className="text-area"
-  //         onChange={handleReplyText}
-  //       ></textarea>
-  //       <button className="rep-btn" type="submit">
-  //         reply
-  //       </button>
-  //     </form>
-  //   </div>
-  // );
-
   const displayConversationText = (message) => {
     setReplyParams({ msgId: message._id, recipient: message.recipient });
     setConversationThread(message.conversation);
-
-    // MAP THROUGH ALL CONVERSATION IN CURRENT THREAD
-    // const conversationDetails = (
-    //   <>
-    //     <div className="msg-section">
-    //       <i
-    //         className="fas fa-chevron-right close-thread"
-    //         onClick={() => setConversationThread(null)}
-    //       ></i>
-    //       {message.conversation.map((convo) => {
-    //         let type = convo.type === "received" ? "left" : "right";
-
-    //         return (
-    //           <p key={convo.text} className={type}>
-    //             {convo.text}
-    //           </p>
-    //         );
-    //       })}
-    //     </div>
-    //   </>
-    // );
-
-    // setConversationThread(<div>{conversationDetails}</div>);
   };
 
   //********RENDER */
@@ -156,7 +115,6 @@ const Messages = ({ user, closeNav, replyMessage }) => {
             setConversationThread={setConversationThread}
           />
         )}
-        {/* {conversationThread && replyTextArea} */}
       </div>
     </div>
   );
