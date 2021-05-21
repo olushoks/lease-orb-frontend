@@ -56,7 +56,7 @@ const InterestedIn = ({ user, closeNav, withdrawInterest }) => {
             <p>{lease.address}</p>
             <p>
               Listed on {getDate(lease.dateListed)} | Available on
-              {getDate(lease.availableDate)}
+              {` ${getDate(lease.availableDate)}`}
             </p>
             <p>Currently leasing for ${lease.rent} per month</p>
             <p>Additional info: {lease.additionalInfo}</p>

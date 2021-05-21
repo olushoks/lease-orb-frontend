@@ -11,7 +11,7 @@ const LogInForm = (props) => {
   } = props;
   return (
     <div className="form-div">
-      <p>{error}</p>
+      <p className="login-error">{error}</p>
       <form className="form-input" onSubmit={(e) => handleSubmit(e)}>
         <input
           type="text"

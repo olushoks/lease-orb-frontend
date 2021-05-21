@@ -1,3 +1,5 @@
+import "./ListLease.css";
+
 const LeaseForm = (props) => {
   const { location, handleChange, handleSubmit, message } = props;
 
@@ -48,6 +50,7 @@ const LeaseForm = (props) => {
         <textarea
           name="additionalInfo"
           value={location.additionalInfo}
+          className="additional-info"
           onChange={handleChange}
         ></textarea>
         <button type="submit" className="btn">

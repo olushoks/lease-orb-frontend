@@ -15,6 +15,8 @@ const HomePage = (props) => {
     reviews,
   } = props;
 
+  //
+
   if (!user) return null;
 
   if (user) {

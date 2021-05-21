@@ -66,15 +66,15 @@ const Header = ({
       <header className="header">Lease-Orb</header>
       <nav className="nav-section">
         <ul className="nav-items">
-          <li onMouseOver={() => handleClick("listedLease")}>
+          <li onClick={() => handleClick("listedLease")}>
             <span className="nav-bar-text">Listed Lease</span>
             <i className="far fa-building"></i>
           </li>
-          <li onMouseOver={() => handleClick("interestedIn")}>
+          <li onClick={() => handleClick("interestedIn")}>
             <span className="nav-bar-text">Interested In</span>
             <i className="fas fa-luggage-cart"></i>
           </li>
-          <li onMouseOver={() => handleClick("messages")}>
+          <li onClick={() => handleClick("messages")}>
             <span className="nav-bar-text">Messages</span>
             <i className="fas fa-envelope-open-text"></i>
           </li>

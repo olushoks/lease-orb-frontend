@@ -33,7 +33,9 @@ const Messages = ({ user, closeNav, replyMessage }) => {
           className="text-area"
           onChange={handleReplyText}
         ></textarea>
-        <button type="submit">reply</button>
+        <button className="rep-btn" type="submit">
+          reply
+        </button>
       </form>
     </div>
   );
@@ -70,9 +72,9 @@ const Messages = ({ user, closeNav, replyMessage }) => {
 
   if (messages.length === 0)
     return (
-      <div>
+      <div className="nav-current">
         <span onClick={closeNav}>
-          <i className="fas fa-window-close"></i>
+          <i className="fas fa-window-close close-btn"></i>
         </span>
         <p>You have no mesages at this time</p>
       </div>
@@ -102,8 +104,8 @@ const Messages = ({ user, closeNav, replyMessage }) => {
             </div>
           );
         })}
-        {/* {conversationThread} */}
         {conversationThread}
+        {conversationThread && replyTextArea}
       </div>
     </div>
   );
