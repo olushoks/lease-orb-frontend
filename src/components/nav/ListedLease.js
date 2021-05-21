@@ -5,10 +5,8 @@ import "./nav.css";
 
 const ListedLease = (props) => {
   const { user, closeNav, deleteLeaseFromDataBase } = props;
-  // const [listedLease] = user.listedLease;
 
   const [listedLease, setListedLease] = useState(user.listedLease);
-  // if (user.listedLease.length > 1) return null;
 
   const deleteLease = () => {
     setListedLease([]); // Removes from UI
