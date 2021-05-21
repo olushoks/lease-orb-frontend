@@ -59,7 +59,7 @@ const Messages = ({ user, closeNav, replyMessage }) => {
     if (text) {
       const { msgId, recipient } = replyParams;
       replyMessage(msgId, recipient, text);
-
+      setConversationThread([...conversationThread, { text, type: "sent" }]);
       setText("");
     }
   };
