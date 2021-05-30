@@ -8,9 +8,6 @@ import MapWithAutoComplete from "../map/MapWithAutoComplete";
 import APIKEY from "../../key";
 import transformString from "../../helper/stringTransformer";
 
-// GOOGLE MAP URL WITH API KEY
-// const googleMapURL = `https://maps.googleapis.com/maps/api/js?key=${APIKEY}&v=3.exp&libraries=geometry,drawing,places`;
-
 // SET API FOR USE WITH GEOCODE
 Geocode.setApiKey(APIKEY);
 
@@ -23,11 +20,11 @@ const ListLease = (props) => {
     city: "",
     state: "",
     zipCode: "",
-    lat: null,
-    lng: null,
+    lat: 0,
+    lng: 0,
     additionalInfo: "",
     availableDate: "",
-    rent: null,
+    rent: 0,
   });
   const [mapLocation, setMapLocation] = useState({
     lat: 39.8097343,
@@ -54,8 +51,8 @@ const ListLease = (props) => {
         city: "",
         state: "",
         zipCode: "",
-        lat: null,
-        lng: null,
+        lat: 0,
+        lng: 0,
         additionalInfo: "",
         availableDate: "",
         rent: "",

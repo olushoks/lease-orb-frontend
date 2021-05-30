@@ -26,6 +26,7 @@
   padding: 0.2rem 0.2rem;
   position: relative;
   right: -65%;
+  cursor: pointer;
 }
 .delete-btn:hover {
   background-color: #d40a0a;

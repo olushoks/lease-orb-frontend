@@ -21,73 +21,8 @@ Geocode.setApiKey(APIKEY);
 
 /*** END OF IMPORTS *****/
 
-/*************************************************************** */
-
 const MapWithAutoComplete = (props) => {
   const { mapLocation, location, onPlaceSelected } = props;
-  //STATE VARIABLES
-  // const [location, setLocation] = useState({
-  //   name: "",
-  //   address: "",
-  //   city: "",
-  //   state: "",
-  //   zipCode: "",
-  //   lat: 39.8097343,
-  //   lng: -98.5556199,
-  //   additionalInfo: "",
-  //   availableDate: "",
-  //   rent: null,
-  // });
-
-  // const [markerPosition, setMarkerPosition] = useState({
-  //   lat: 39.8097343,
-  //   lng: -98.5556199,
-  // });
-
-  // const getState = (addressArray) => {
-  //   let state;
-  //   const [stateDetails] = addressArray.filter((address) => {
-  //     if (address.types[0] === "administrative_area_level_1") return true;
-  //   });
-  //   state = stateDetails === undefined ? "" : stateDetails.long_name;
-  //   return state;
-  // };
-
-  // const getCity = (addressArray) => {
-  //   let city;
-  //   const [cityDetails] = addressArray.filter((address) => {
-  //     if (address.types[0] === "locality") {
-  //       return true;
-  //     }
-  //   });
-  //   city = cityDetails === undefined ? "" : cityDetails.long_name;
-  //   return city;
-  // };
-
-  // const getZip = (addressArray) => {
-  //   let zipCode;
-  //   const [zipCodeDetails] = addressArray.filter((address) => {
-  //     if (address.types[0] === "postal_code") return true;
-  //   });
-  //   zipCode = zipCodeDetails === undefined ? "" : zipCodeDetails.long_name;
-  //   return zipCode;
-  // };
-
-  //GET LATITUDE AND LONGIITUDE WHEN USER MAKE A SELECTION FROM AUTOCOMPLETE
-  // const onPlaceSelected = (place) => {
-  //   const lat = place.geometry.location.lat();
-  //   const lng = place.geometry.location.lng();
-
-  //   const name = place.name;
-  //   const address = place.formatted_address;
-  //   const addressArray = place.address_components;
-  //   const city = getCity(addressArray);
-  //   const state = getState(addressArray);
-  //   const zipCode = getZip(addressArray);
-
-  //   setMarkerPosition({ lat, lng });
-  //   setLocation({ ...location, name, address, city, state, zipCode, lat, lng });
-  // };
 
   // MAP WRAPPER
   const MapWithAMarker = withScriptjs(

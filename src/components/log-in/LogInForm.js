@@ -9,6 +9,7 @@ const LogInForm = (props) => {
     handleSubmit,
     error,
   } = props;
+
   return (
     <div className="form-div">
       <p className="login-error">{error}</p>

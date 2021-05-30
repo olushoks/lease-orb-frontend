@@ -120,8 +120,8 @@ const SearchLease = ({ closeForm, user, indicateInterest }) => {
       <span onClick={closeForm} className="close">
         <i className="fas fa-window-close"></i>
       </span>
-      <div>{searchField}</div>
       <div>{searchResult && <Map searchResult={searchResult} />}</div>
+      <div>{searchField}</div>
       <p className="error">{error}</p>
       <div>{searchResult && displayResult}</div>
     </div>

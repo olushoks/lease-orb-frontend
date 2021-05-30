@@ -55,7 +55,6 @@ const App = () => {
   };
 
   useEffect(() => {
-    // let refreshUserData;
     if (isLoggedIn && user) {
       const refreshUserData = async () => {
         await axios
@@ -68,7 +67,7 @@ const App = () => {
 
       let refreshInterval = setInterval(() => {
         refreshUserData();
-      }, 5000);
+      }, 3000);
 
       return () => clearInterval(refreshInterval);
     }
@@ -147,7 +146,6 @@ const App = () => {
       {isLoggedIn && (
         <HomePage
           user={user}
-          // refresh={refreshUserData}
           submitLease={submitLease}
           logOut={logOut}
           deleteLeaseFromDataBase={deleteLeaseFromDataBase}
