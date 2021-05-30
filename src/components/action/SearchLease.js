@@ -1,36 +1,34 @@
 import Map from "../map/Map";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import getDate from "../../helper/getDateFromDateTime";
-
 import "./SearchLease.css";
-
 import transformString from "../../helper/stringTransformer";
 
 const SearchLease = ({ closeForm, user, indicateInterest }) => {
-  const [searchCriteria, setSearchCriteria] = useState("");
+  const searchBox = useRef("");
   const [searchResult, setSearchResult] = useState(null);
   const [error, setError] = useState("");
 
-  const handleChange = (e) => {
-    setSearchCriteria(e.target.value);
-  };
+  useEffect(() => {
+    searchBox.current.focus();
+  });
 
   const handleSearch = async (e) => {
     e.preventDefault();
 
-    if (searchCriteria) {
+    if (searchBox) {
       await axios
         .get(
           `http://localhost:5000/api/users/${
             user.username
-          }/search-lease/${transformString(searchCriteria)}`
+          }/search-lease/${transformString(searchBox.current.value)}`
         )
         .then(({ data }) => {
           setSearchResult(data);
         })
         .catch((err) => console.log(err));
-      setSearchCriteria("");
+      searchBox.current.focus();
     }
   };
 
@@ -69,8 +67,7 @@ const SearchLease = ({ closeForm, user, indicateInterest }) => {
       <input
         type="search"
         placeholder="search by city or zip"
-        value={searchCriteria}
-        onChange={handleChange}
+        ref={searchBox}
         className="input-field"
       ></input>
       <button className="search-btn" type="submit" onClick={handleSearch}>
@@ -107,7 +104,6 @@ const SearchLease = ({ closeForm, user, indicateInterest }) => {
               >
                 Indicate Interest
               </button>
-
               <hr></hr>
             </div>
           );
@@ -120,9 +116,14 @@ const SearchLease = ({ closeForm, user, indicateInterest }) => {
       <span onClick={closeForm} className="close">
         <i className="fas fa-window-close"></i>
       </span>
-      <div>{searchResult && <Map searchResult={searchResult} />}</div>
-      <div>{searchField}</div>
+
+      <div>
+        {searchResult && searchResult.length > 0 && (
+          <Map searchResult={searchResult} />
+        )}
+      </div>
       <p className="error">{error}</p>
+      <div>{searchField}</div>
       <div>{searchResult && displayResult}</div>
     </div>
   );

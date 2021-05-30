@@ -60,7 +60,7 @@ const App = () => {
         await axios
           .get(`http://localhost:5000/api/users/${user.username}`)
           .then(({ data }) => {
-            setUser(data);
+            // setUser(data);
           })
           .catch((err) => console.log(err.response));
       };
