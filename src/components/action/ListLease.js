@@ -1,10 +1,7 @@
-/* eslint-disable array-callback-return */
-/*************************************************************** */
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Geocode from "react-geocode";
 import LeaseForm from "../action/LeaseForm";
 import MapWithAutoComplete from "../map/MapWithAutoComplete";
-
 import APIKEY from "../../key";
 import transformString from "../../helper/stringTransformer";
 
@@ -12,7 +9,15 @@ import transformString from "../../helper/stringTransformer";
 Geocode.setApiKey(APIKEY);
 
 const ListLease = (props) => {
-  const { closeForm, submitLease } = props;
+  const { closeForm, submitLease, listedLease } = props;
+  const nameRef = useRef(null);
+  const addressRef = useRef(null);
+  const rentRef = useRef(null);
+  const availableDateRef = useRef(null);
+  const additionalInfoRef = useRef(null);
+
+  const alertRef = useRef(null);
+
   // STATE VARIABLES
   const [location, setLocation] = useState({
     name: "",
@@ -22,55 +27,55 @@ const ListLease = (props) => {
     zipCode: "",
     lat: 0,
     lng: 0,
-    additionalInfo: "",
-    availableDate: "",
-    rent: 0,
   });
+
   const [mapLocation, setMapLocation] = useState({
     lat: 39.8097343,
     lng: -98.5556199,
   });
-  const [message, setMessage] = useState("");
 
   // SUBMIT LEASEDETAILS
   const handleSubmit = (e) => {
     e.preventDefault();
     if (
-      !location.name ||
-      !location.address ||
-      !location.availableDate ||
-      !location.rent
+      !nameRef.current.value ||
+      !addressRef.current.value ||
+      !rentRef.current.value ||
+      rentRef.current.value === "0" ||
+      !availableDateRef.current.value
     ) {
-      setMessage("One or more fields needs to be filled before  submitting");
+      alertRef.current.innerHTML =
+        "One or more fields needs to be filled before  submitting";
+    } else if (listedLease.length > 0) {
+      alertRef.current.innerHTML =
+        "You cannot have more than one active lease listed";
     } else {
-      setMessage("Lease has been succesfully submitted");
-      submitLease(location);
-      setLocation({
-        name: "",
-        address: "",
-        city: "",
-        state: "",
-        zipCode: "",
-        lat: 0,
-        lng: 0,
-        additionalInfo: "",
-        availableDate: "",
-        rent: "",
+      alertRef.current.innerHTML = "Lease has been succesfully submitted";
+      const additionalInfo =
+        additionalInfoRef.current.value === ""
+          ? " "
+          : additionalInfoRef.current.value;
+      submitLease({
+        ...location,
+        name: nameRef.current.value,
+        address: addressRef.current.value,
+        rent: rentRef.current.value,
+        availableDate: availableDateRef.current.value,
+        additionalInfo,
       });
+      nameRef.current.value = "";
+      addressRef.current.value = "";
+      rentRef.current.value = null;
+      availableDateRef.current.value = "";
+      additionalInfoRef.current.value = "";
     }
   };
 
-  // HANDLE FORM INPUT CHANGE
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setLocation({ ...location, [name]: value });
-  };
-
-  /***ADDED */
   const getState = (addressArray) => {
     let state;
     const [stateDetails] = addressArray.filter((address) => {
-      if (address.types[0] === "administrative_area_level_1") return true;
+      return address.types[0] === "administrative_area_level_1";
+      // if (address.types[0] === "administrative_area_level_1") return true;
     });
     state = stateDetails === undefined ? "" : stateDetails.long_name;
     state = transformString(state);
@@ -80,9 +85,10 @@ const ListLease = (props) => {
   const getCity = (addressArray) => {
     let city;
     const [cityDetails] = addressArray.filter((address) => {
-      if (address.types[0] === "locality") {
-        return true;
-      }
+      return address.types[0] === "locality";
+      // if (address.types[0] === "locality") {
+      //   return true;
+      // }
     });
     city = cityDetails === undefined ? "" : cityDetails.long_name;
     city = transformString(city);
@@ -92,7 +98,8 @@ const ListLease = (props) => {
   const getZip = (addressArray) => {
     let zipCode;
     const [zipCodeDetails] = addressArray.filter((address) => {
-      if (address.types[0] === "postal_code") return true;
+      return address.types[0] === "postal_code";
+      // if (address.types[0] === "postal_code") return true;
     });
     zipCode = zipCodeDetails === undefined ? "" : zipCodeDetails.long_name;
     zipCode = transformString(zipCode);
@@ -104,14 +111,24 @@ const ListLease = (props) => {
     const lat = place.geometry.location.lat();
     const lng = place.geometry.location.lng();
 
-    const name = place.name;
-    const address = place.formatted_address;
+    nameRef.current.value = place.name;
+    addressRef.current.value = place.formatted_address;
+
     const addressArray = place.address_components;
     const city = getCity(addressArray);
     const state = getState(addressArray);
     const zipCode = getZip(addressArray);
     setMapLocation({ lat, lng });
-    setLocation({ ...location, name, address, city, state, zipCode, lat, lng });
+    setLocation({
+      ...location,
+      name: place.name,
+      address: place.formatted_address,
+      city,
+      state,
+      zipCode,
+      lat,
+      lng,
+    });
   };
   /***END */
 
@@ -129,10 +146,15 @@ const ListLease = (props) => {
       </div>
       <div>
         <LeaseForm
-          location={location}
-          handleChange={handleChange}
+          location={{
+            nameRef,
+            addressRef,
+            rentRef,
+            availableDateRef,
+            additionalInfoRef,
+          }}
           handleSubmit={handleSubmit}
-          message={message}
+          alert={alertRef}
         />
       </div>
     </>

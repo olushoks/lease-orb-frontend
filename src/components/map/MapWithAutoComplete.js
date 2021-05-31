@@ -1,5 +1,3 @@
-/* eslint-disable array-callback-return */
-// import React, { useState } from "react";
 import {
   InfoWindow,
   withScriptjs,
@@ -10,7 +8,6 @@ import {
 import Autocomplete from "react-google-autocomplete";
 import Geocode from "react-geocode";
 import { Descriptions } from "antd";
-//import LeaseForm from "../action/LeaseForm";
 
 import APIKEY from "../../key";
 // GOOGLE MAP URL WITH API KEY
@@ -63,7 +60,13 @@ const MapWithAutoComplete = (props) => {
 
   return (
     <div>
-      <div style={{ padding: "1rem", margin: "0 auto", maxWidth: 1000 }}>
+      <div
+        style={{
+          padding: "1rem",
+          margin: "0 auto",
+          maxWidth: 1000,
+        }}
+      >
         <Descriptions bordered>
           <Descriptions.Item label="Address">
             {location.address}
@@ -74,7 +77,15 @@ const MapWithAutoComplete = (props) => {
       <MapWithAMarker
         googleMapURL={googleMapURL}
         loadingElement={<div style={{ height: `100%` }} />}
-        containerElement={<div style={{ height: `400px`, width: "50rem" }} />}
+        containerElement={
+          <div
+            style={{
+              height: `400px`,
+              width: "50rem",
+              border: `0.3rem inset #6f0fa7`,
+            }}
+          />
+        }
         mapElement={<div style={{ height: `100%`, maxWidth: "50rem" }} />}
       />
     </div>

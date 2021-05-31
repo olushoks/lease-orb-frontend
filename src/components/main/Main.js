@@ -80,7 +80,11 @@ const Main = ({ user, submitLease, indicateInterest, addReview, reviews }) => {
         </>
       )}
       {listLease && (
-        <ListLease closeForm={closeForm} submitLease={submitLease} />
+        <ListLease
+          closeForm={closeForm}
+          submitLease={submitLease}
+          listedLease={user.listedLease}
+        />
       )}
       {leaseSearch && (
         <SearchLease

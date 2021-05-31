@@ -1,3 +1,4 @@
+// import map from "../map/Map";
 import Map from "../map/Map";
 import { useState, useRef, useEffect } from "react";
 import axios from "axios";
@@ -121,6 +122,7 @@ const SearchLease = ({ closeForm, user, indicateInterest }) => {
         {searchResult && searchResult.length > 0 && (
           <Map searchResult={searchResult} />
         )}
+        {/* {searchResult && searchResult.length > 0 && map(searchResult)} */}
       </div>
       <p className="error">{error}</p>
       <div>{searchField}</div>

@@ -5,7 +5,6 @@ import {
   GoogleMap,
   Marker,
 } from "react-google-maps";
-
 import Geocode from "react-geocode";
 import APIKEY from "../../key";
 
@@ -16,27 +15,22 @@ Geocode.setApiKey(APIKEY);
 const googleMapURL = `https://maps.googleapis.com/maps/api/js?key=${APIKEY}&v=3.exp&libraries=geometry,drawing,places`;
 
 const Map = ({ searchResult }) => {
-  const mapPosition = {
-    lat: 39.8097343,
-    lng: -98.5556199,
-  };
-
   // MAP WRAPPER
   const MapWithAMarker = withScriptjs(
     withGoogleMap((props) => (
       <div>
         <GoogleMap
           defaultZoom={12}
-          defaultCenter={{ lat: mapPosition.lat, lng: mapPosition.lng }}
+          defaultCenter={{ lat: 39.8097343, lng: -98.5556199 }}
         >
           {!searchResult
             ? null
-            : searchResult.map((result) => {
+            : searchResult.map((result, index) => {
                 return (
                   <Marker
                     draggable={false}
                     position={{ lat: result.lat, lng: result.lng }}
-                    key={result.lat + result.lng}
+                    key={index}
                   >
                     <InfoWindow>
                       <div>{result.name}</div>

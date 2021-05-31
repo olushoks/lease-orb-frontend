@@ -1,57 +1,43 @@
 import "./ListLease.css";
 
 const LeaseForm = (props) => {
-  const { location, handleChange, handleSubmit, message } = props;
+  const {
+    location: {
+      nameRef,
+      addressRef,
+      rentRef,
+      availableDateRef,
+      additionalInfoRef,
+    },
+    handleSubmit,
+    alert,
+  } = props;
 
   return (
     <>
       <div style={{ marginTop: "3rem" }}>
-        <p>Enter Lease Details as accurately as possible</p>
-        <p>{message}</p>
+        <p ref={alert}>Enter Lease Details as accurately as possible</p>
       </div>
       <form onSubmit={handleSubmit}>
         <label htmlFor="propertyName">Apartment Name</label>
-        <input
-          type="text"
-          name="name"
-          value={location.name}
-          onChange={handleChange}
-          // required
-        ></input>
+        <input type="text" ref={nameRef}></input>
         <label htmlFor="address">Address</label>
-        <input
-          type="text"
-          name="address"
-          value={location.address}
-          onChange={handleChange}
-          readOnly
-          // required
-        ></input>
+        <input type="text" ref={addressRef} readOnly></input>
         <label htmlFor="monthly-rent">Rent Per Month</label>
-        <input
-          type="number"
-          min="0"
-          step="500"
-          name="rent"
-          // required
-          onChange={handleChange}
-        ></input>
+        <input type="number" min="0" step="500" ref={rentRef}></input>
         <label htmlFor="available-date">Available as of?</label>
         <input
           type="date"
-          name="availableDate"
+          ref={availableDateRef}
           min="2021-04-25"
           max="2021-08-31"
-          value={location.availableDate}
-          // required
-          onChange={handleChange}
         ></input>
-        <label htmlFor="additional-info">Additional Information</label>
+        <label htmlFor="additional-info" name="additional-info">
+          Additional Information
+        </label>
         <textarea
-          name="additionalInfo"
-          value={location.additionalInfo}
+          ref={additionalInfoRef}
           className="additional-info"
-          onChange={handleChange}
         ></textarea>
         <button type="submit" className="btn">
           Submit
