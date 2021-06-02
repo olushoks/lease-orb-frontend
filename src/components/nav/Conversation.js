@@ -2,7 +2,7 @@ const Conversation = ({
   handleReplyText,
   sendReply,
   conversationThread,
-  setConversationThread,
+  setShowThread,
   text,
 }) => {
   return (
@@ -10,7 +10,7 @@ const Conversation = ({
       <div className="msg-section">
         <i
           className="fas fa-chevron-right close-thread"
-          onClick={() => setConversationThread(null)}
+          onClick={() => setShowThread(false)}
         ></i>
         {conversationThread.map((convo) => {
           let type = convo.type === "received" ? "left" : "right";

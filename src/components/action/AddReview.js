@@ -27,7 +27,7 @@ const AddForm = ({ closeForm, addReview, reviews, user }) => {
           );
     }
     setStarRatings([...updatedStarRating]);
-    setReviewDetails({ ...reviewDetails, star_rating: num });
+    setNum(num);
   };
 
   const stars = [
@@ -35,64 +35,73 @@ const AddForm = ({ closeForm, addReview, reviews, user }) => {
       className="fas fa-star"
       key={1}
       style={{ color: "gray" }}
-      onClick={() => clickStar(1)}
+      onClick={() => {
+        clickStar(1);
+      }}
     ></i>,
     <i
       className="fas fa-star"
       key={2}
       style={{ color: "gray" }}
-      onClick={() => clickStar(2)}
+      onClick={() => {
+        clickStar(2);
+      }}
     ></i>,
     <i
       className="fas fa-star"
       key={3}
       style={{ color: "gray" }}
-      onClick={() => clickStar(3)}
+      onClick={() => {
+        clickStar(3);
+      }}
     ></i>,
     <i
       className="fas fa-star"
       key={4}
       style={{ color: "gray" }}
-      onClick={() => clickStar(4)}
+      onClick={() => {
+        clickStar(4);
+      }}
     ></i>,
     <i
       className="fas fa-star"
       key={5}
       style={{ color: "gray" }}
-      onClick={() => clickStar(5)}
+      onClick={() => {
+        clickStar(5);
+      }}
     ></i>,
   ];
 
   const [error, setError] = useState("");
   const [starRatings, setStarRatings] = useState(stars);
-  const [reviewDetails, setReviewDetails] = useState({
-    review_by: user.username,
-    review_text: "",
-    star_rating: 0,
-  });
+  const [num, setNum] = useState(0);
+  const [review, setReview] = useState("");
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setReviewDetails({ ...reviewDetails, [name]: value });
+    setReview(e.target.value);
   };
 
   const submitReview = (e) => {
     e.preventDefault();
-    const { review_text, star_rating } = reviewDetails;
-    if (!review_text && !star_rating) {
+    if (!review && !num) {
       setError(`You cannot submit empty values`);
       setTimeout(() => setError(""), 2000);
-    } else if (!review_text && star_rating) {
+    } else if (!review && num) {
       setError(`Enter review before submitting`);
       setTimeout(() => setError(""), 2000);
-    } else if (!star_rating && review_text) {
+    } else if (!num && review) {
       setError(`click on the stars to give a rating`);
       setTimeout(() => setError(""), 2000);
     } else {
-      console.log(reviewDetails);
-      setReviewDetails({ review_text: "", star_rating: 0 });
+      addReview({
+        review_by: user.username,
+        review_text: review,
+        star_rating: num,
+      });
       setStarRatings(stars);
-      addReview(reviewDetails);
+      setReview("");
+      setNum(0);
     }
   };
 
@@ -107,7 +116,7 @@ const AddForm = ({ closeForm, addReview, reviews, user }) => {
         <form onSubmit={submitReview}>
           <textarea
             name="review_text"
-            value={reviewDetails.review_text}
+            value={review}
             className="text-box"
             onChange={handleChange}
           ></textarea>

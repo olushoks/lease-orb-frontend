@@ -6,6 +6,7 @@ import "./Messages.css";
 
 const Messages = ({ user, closeNav, replyMessage }) => {
   const [messages, setMessages] = useState([...user.messages]);
+  const [showThread, setShowThread] = useState(false);
   const [conversationThread, setConversationThread] = useState(null);
   const [text, setText] = useState("");
   const [replyParams, setReplyParams] = useState({});
@@ -29,7 +30,7 @@ const Messages = ({ user, closeNav, replyMessage }) => {
 
     let refreshInterval = setInterval(() => {
       refreshMessages();
-    }, 10000);
+    }, 3000);
 
     return () => clearInterval(refreshInterval);
   });
@@ -50,8 +51,8 @@ const Messages = ({ user, closeNav, replyMessage }) => {
 
   const displayConversationText = (message) => {
     setReplyParams({ msgId: message._id, recipient: message.recipient });
+    setShowThread(true);
     setConversationThread(message.conversation);
-    console.log(message._id);
   };
 
   //********RENDER */
@@ -91,13 +92,13 @@ const Messages = ({ user, closeNav, replyMessage }) => {
             </div>
           );
         })}
-        {conversationThread && (
+        {showThread && (
           <Conversation
             handleReplyText={handleReplyText}
             sendReply={sendReply}
             text={text}
             conversationThread={conversationThread}
-            setConversationThread={setConversationThread}
+            setShowThread={setShowThread}
           />
         )}
       </div>

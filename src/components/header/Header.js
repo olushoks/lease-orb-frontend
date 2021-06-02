@@ -14,27 +14,24 @@ const Header = ({
 }) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [currentNav, setCurrentNav] = useState(null);
-  // const [userMessages, setUserMessages] = useState(user.messages);
+  const [messageDetails, setMessageDetails] = useState({ ...user });
 
-  // useEffect(() => {
-  //   const refreshMessages = async () => {
-  //     await axios
-  //       .get(`http://localhost:5000/api/users/${user.username}/messages`)
-  //       .then(({ data }) => {
-  //         // setUser(data);
-  //         setUserMessages(data);
-  //         console.log({ data });
-  //         // console.log("Fetched");
-  //       })
-  //       .catch((err) => console.log(err.response));
-  //   };
+  useEffect(() => {
+    const refreshMessages = async () => {
+      await axios
+        .get(`http://localhost:5000/api/users/${user.username}/messages`)
+        .then(({ data }) => {
+          setMessageDetails({ ...user, data });
+        })
+        .catch((err) => console.log(err.response));
+    };
 
-  //   let refreshInterval = setInterval(() => {
-  //     refreshMessages();
-  //   }, 10000);
+    let refreshInterval = setInterval(() => {
+      refreshMessages();
+    }, 3000);
 
-  //   return () => clearInterval(refreshInterval);
-  // });
+    return () => clearInterval(refreshInterval);
+  });
 
   const handleClick = (task) => {
     switch (task) {
@@ -61,7 +58,7 @@ const Header = ({
       case "messages":
         setCurrentNav(
           <Messages
-            user={user}
+            user={messageDetails}
             // userMessages={user.messages}
             closeNav={closeNav}
             replyMessage={replyMessage}
