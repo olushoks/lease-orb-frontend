@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import "./Header.css";
 import ListedLease from "../nav/ListedLease";
 import InterestedIn from "../nav/InterestedIn";
@@ -13,6 +14,27 @@ const Header = ({
 }) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [currentNav, setCurrentNav] = useState(null);
+  // const [userMessages, setUserMessages] = useState(user.messages);
+
+  // useEffect(() => {
+  //   const refreshMessages = async () => {
+  //     await axios
+  //       .get(`http://localhost:5000/api/users/${user.username}/messages`)
+  //       .then(({ data }) => {
+  //         // setUser(data);
+  //         setUserMessages(data);
+  //         console.log({ data });
+  //         // console.log("Fetched");
+  //       })
+  //       .catch((err) => console.log(err.response));
+  //   };
+
+  //   let refreshInterval = setInterval(() => {
+  //     refreshMessages();
+  //   }, 10000);
+
+  //   return () => clearInterval(refreshInterval);
+  // });
 
   const handleClick = (task) => {
     switch (task) {
@@ -40,6 +62,7 @@ const Header = ({
         setCurrentNav(
           <Messages
             user={user}
+            // userMessages={user.messages}
             closeNav={closeNav}
             replyMessage={replyMessage}
           />
