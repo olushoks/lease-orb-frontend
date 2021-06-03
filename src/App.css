@@ -1,6 +1,6 @@
-.app-main {
+/* .app-main {
   margin-bottom: 3rem;
-}
+} */
 
 .logo-text {
   text-align: center;
@@ -13,7 +13,7 @@
 .landing-page-review {
   position: fixed;
   left: 40%;
-  /* top: 20%; */
+  top: 20%;
 }
 
 .log-in {
