@@ -10,8 +10,9 @@
   left: 50%;
   transform: translateX(-50%);
   font-size: 4rem;
-  text-decoration: underline;
   color: #6f0fa7;
+  background-color: rgba(112, 15, 169, 0.1);
+  z-index: 1;
 }
 
 .nav-section {
