@@ -1,6 +1,6 @@
-import "./HomePage.css";
 import Header from "../header/Header";
 import Main from "../main/Main";
+import "./HomePage.css";
 
 const HomePage = (props) => {
   const {
@@ -14,8 +14,6 @@ const HomePage = (props) => {
     addReview,
     reviews,
   } = props;
-
-  //
 
   if (!user) return null;
 

@@ -7,22 +7,23 @@
 .header {
   color: #6f0fa7;
   background-color: rgba(112, 15, 169, 0.1);
+  border-bottom: 0.2rem solid #6f0fa7;
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
-  padding: 0.1rem 0.5rem;
   font-size: 4rem;
   width: 100vw;
+  height: 20vh;
   z-index: 1;
 }
 
 .nav-section {
   display: inline-block;
-  margin-top: 7rem;
+  top: 21%;
   position: fixed;
-  right: 0;
-  transform: translateX(-5%);
+  right: 5%;
+  transform: translateX(5%);
 }
 
 .nav-items li {
@@ -30,14 +31,23 @@
   padding-right: 1rem;
   text-align: right;
   margin: 0 0.2rem 0 0.2rem;
-  color: #000000;
-  /* color: #6f0fa7; */
+  color: #6f0fa7;
 }
 
 .nav-bar-text {
   padding-right: 0.5rem;
+  color: #6f0fa7;
+  text-transform: lowercase;
+  font-weight: bold;
 }
 
 li {
   cursor: pointer;
+}
+
+.nav-icon {
+  font-size: 1rem;
+  text-align: center;
+  position: relative;
+  left: -50%;
 }

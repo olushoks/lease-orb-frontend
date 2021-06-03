@@ -87,20 +87,20 @@ const Header = ({
       <nav className="nav-section">
         <ul className="nav-items">
           <li onClick={() => handleClick("listedLease")}>
-            <span className="nav-bar-text">Listed Lease</span>
-            <i className="far fa-building"></i>
+            <i className="far fa-building nav-icon"></i>
+            <h3 className="nav-bar-text">Listed Lease</h3>
           </li>
           <li onClick={() => handleClick("interestedIn")}>
-            <span className="nav-bar-text">Interested In</span>
-            <i className="fas fa-luggage-cart"></i>
+            <i className="fas fa-luggage-cart nav-icon"></i>
+            <h3 className="nav-bar-text">Interested In</h3>
           </li>
           <li onClick={() => handleClick("messages")}>
-            <span className="nav-bar-text">Messages</span>
-            <i className="fas fa-envelope-open-text"></i>
+            <i className="fas fa-envelope-open-text nav-icon"></i>
+            <h3 className="nav-bar-text">Messages</h3>
           </li>
           <li onClick={() => handleClick("logOut")}>
-            <span className="nav-bar-text">LogOut</span>
-            <i className="fas fa-sign-out-alt"></i>
+            <i className="fas fa-sign-out-alt nav-icon"></i>
+            <h3 className="nav-bar-text">LogOut</h3>
           </li>
         </ul>
       </nav>
