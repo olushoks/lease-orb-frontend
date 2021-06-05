@@ -61,22 +61,27 @@ const Main = ({ user, submitLease, indicateInterest, addReview, reviews }) => {
             Welcome <span className="user-name">{user.username}</span>, what
             would you like to do today?
           </p>
-          <div className="error">{error}</div>
-          <button
-            className="btn action"
-            onClick={() => handleClick("listALease")}
-          >
-            List A Lease
-          </button>
-          <button
-            className="btn action"
-            onClick={() => handleClick("searchLease")}
-          >
-            Search All Leases
-          </button>
-          <button className="btn action" onClick={() => handleClick("reviews")}>
-            REVIEWS
-          </button>
+          <p className="error">{error}</p>
+          <div className="btn-group">
+            <button
+              className="btn action"
+              onClick={() => handleClick("listALease")}
+            >
+              List A Lease
+            </button>
+            <button
+              className="btn action"
+              onClick={() => handleClick("searchLease")}
+            >
+              Search All Leases
+            </button>
+            <button
+              className="btn action"
+              onClick={() => handleClick("reviews")}
+            >
+              REVIEWS
+            </button>
+          </div>
         </>
       )}
       {listLease && (

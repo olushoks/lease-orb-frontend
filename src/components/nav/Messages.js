@@ -55,54 +55,59 @@ const Messages = ({ user, closeNav, replyMessage }) => {
     setConversationThread(message.conversation);
   };
 
-  //********RENDER */
+  /* RENDER */
   if (!messages) return null;
 
   if (messages.length === 0)
     return (
-      <div className="nav-current">
-        <span onClick={closeNav}>
-          <i className="fas fa-window-close close-btn"></i>
-        </span>
-        <p>You have no mesages at this time</p>
-      </div>
+      <section>
+        <div className="nav-current">
+          <span onClick={closeNav}>
+            <i className="fas fa-window-close close-btn"></i>
+          </span>
+          <p>You have no mesages at this time</p>
+        </div>
+      </section>
     );
 
   return (
-    <div className="nav-current" style={{ left: "83%" }}>
-      <span onClick={closeNav}>
-        <i
-          className="fas fa-window-close close-btn"
-          style={{ left: "82%" }}
-        ></i>
-      </span>
-      <div>
-        {messages.map((message) => {
-          return (
-            <div key={message._id}>
-              <p
-                className="msg-title"
-                onClick={() => {
-                  displayConversationText(message);
-                }}
-              >
-                <i className="fas fa-comment-alt msg-icon"></i>
-                {message.title}
-              </p>
-            </div>
-          );
-        })}
-        {showThread && (
-          <Conversation
-            handleReplyText={handleReplyText}
-            sendReply={sendReply}
-            text={text}
-            conversationThread={conversationThread}
-            setShowThread={setShowThread}
-          />
-        )}
+    <section>
+      {/* <div className="nav-current" style={{ left: "83%" }}> */}
+      <div className="nav-current">
+        <span onClick={closeNav}>
+          <i
+            className="fas fa-window-close close-btn"
+            // style={{ left: "82%" }}
+          ></i>
+        </span>
+        <div>
+          {messages.map((message) => {
+            return (
+              <div key={message._id}>
+                <p
+                  className="msg-title"
+                  onClick={() => {
+                    displayConversationText(message);
+                  }}
+                >
+                  <i className="fas fa-comment-alt msg-icon"></i>
+                  {message.title}
+                </p>
+              </div>
+            );
+          })}
+          {showThread && (
+            <Conversation
+              handleReplyText={handleReplyText}
+              sendReply={sendReply}
+              text={text}
+              conversationThread={conversationThread}
+              setShowThread={setShowThread}
+            />
+          )}
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

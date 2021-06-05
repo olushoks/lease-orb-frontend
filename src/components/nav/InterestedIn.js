@@ -11,16 +11,6 @@ const InterestedIn = ({ user, closeNav, withdrawInterest }) => {
 
   if (!leaseInterestedIn) return null;
 
-  if (leaseInterestedIn.length === 0)
-    return (
-      <div className="nav-current">
-        <span onClick={closeNav}>
-          <i className="fas fa-window-close close-btn"></i>
-        </span>
-        <p>You have not indicated interest in any lease</p>
-      </div>
-    );
-
   const withdrawInterestInLease = async (lease) => {
     console.log(lease._id);
     await axios
@@ -41,35 +31,49 @@ const InterestedIn = ({ user, closeNav, withdrawInterest }) => {
       .catch((err) => console.log(err.response.data));
   };
 
+  if (leaseInterestedIn.length === 0)
+    return (
+      <section>
+        <div className="nav-current">
+          <span onClick={closeNav}>
+            <i className="fas fa-window-close close-btn"></i>
+          </span>
+          <p>You have not indicated interest in any lease</p>
+        </div>
+      </section>
+    );
+
   return (
-    <div className="nav-current">
-      <span onClick={closeNav}>
-        <i className="fas fa-window-close close-btn"></i>
-      </span>
-      {leaseInterestedIn.map((lease) => {
-        return (
-          <div key={lease._id}>
-            <p>
-              {lease.name}
-              <span className="italic"> posted by {lease.postedBy}</span>
-            </p>
-            <p>{lease.address}</p>
-            <p>
-              Listed on {getDate(lease.dateListed)} | Available on
-              {` ${getDate(lease.availableDate)}`}
-            </p>
-            <p>Currently leasing for ${lease.rent} per month</p>
-            <p>Additional info: {lease.additionalInfo}</p>
-            <button
-              className="delete-btn"
-              onClick={() => withdrawInterestInLease(lease)}
-            >
-              Withdraw Interest
-            </button>
-          </div>
-        );
-      })}
-    </div>
+    <section>
+      <div className="nav-current">
+        <span onClick={closeNav}>
+          <i className="fas fa-window-close close-btn"></i>
+        </span>
+        {leaseInterestedIn.map((lease) => {
+          return (
+            <div key={lease._id}>
+              <p>
+                {lease.name}
+                <span className="italic"> posted by {lease.postedBy}</span>
+              </p>
+              <p>{lease.address}</p>
+              <p>
+                Listed on {getDate(lease.dateListed)} | Available on
+                {` ${getDate(lease.availableDate)}`}
+              </p>
+              <p>Currently leasing for ${lease.rent} per month</p>
+              <p>Additional info: {lease.additionalInfo}</p>
+              <button
+                className="delete-btn"
+                onClick={() => withdrawInterestInLease(lease)}
+              >
+                Withdraw Interest
+              </button>
+            </div>
+          );
+        })}
+      </div>
+    </section>
   );
 };
 

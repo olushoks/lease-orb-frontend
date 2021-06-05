@@ -5,6 +5,22 @@
   transform: translateX(-50%);
 }
 
+@media screen and (max-width: 1497px) {
+  .btn-group {
+    width: 15rem;
+  }
+
+  .btn {
+    margin: 1rem 0.3rem 0 0.3rem;
+    color: #ffffff;
+    display: block;
+    width: 15rem;
+    text-align: center;
+    position: relative;
+    left: 30%;
+  }
+}
+
 .btn {
   margin: 1rem 0.3rem 0 0.3rem;
   color: #ffffff;

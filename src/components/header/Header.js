@@ -33,9 +33,10 @@ const Header = ({
     return () => clearInterval(refreshInterval);
   });
 
-  const handleClick = (task) => {
+  const handleClick = (task, e) => {
     switch (task) {
       case "listedLease":
+        console.log(e.target.getBoundingClientRect().left);
         setCurrentNav(
           <ListedLease
             user={user}
@@ -46,6 +47,7 @@ const Header = ({
         setIsNavOpen(true);
         break;
       case "interestedIn":
+        console.log(e.target.getBoundingClientRect().left);
         setCurrentNav(
           <InterestedIn
             user={user}
@@ -56,6 +58,7 @@ const Header = ({
         setIsNavOpen(true);
         break;
       case "messages":
+        console.log(e.target.getBoundingClientRect().left);
         setCurrentNav(
           <Messages
             user={messageDetails}
@@ -86,15 +89,15 @@ const Header = ({
       <header className="header">Lease-Orb</header>
       <nav className="nav-section">
         <ul className="nav-items">
-          <li onClick={() => handleClick("listedLease")}>
+          <li onClick={(e) => handleClick("listedLease", e)}>
             <i className="far fa-building nav-icon"></i>
             <h3 className="nav-bar-text">Listed Lease</h3>
           </li>
-          <li onClick={() => handleClick("interestedIn")}>
+          <li onClick={(e) => handleClick("interestedIn", e)}>
             <i className="fas fa-luggage-cart nav-icon"></i>
             <h3 className="nav-bar-text">Interested In</h3>
           </li>
-          <li onClick={() => handleClick("messages")}>
+          <li onClick={(e) => handleClick("messages", e)}>
             <i className="fas fa-envelope-open-text nav-icon"></i>
             <h3 className="nav-bar-text">Messages</h3>
           </li>
