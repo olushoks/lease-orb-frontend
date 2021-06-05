@@ -10,6 +10,12 @@
   color: #ffffff;
 }
 
+.btn:hover {
+  background-color: transparent;
+  color: #6f0fa7;
+  border: 0.2rem solid #6f0fa7;
+}
+
 .greeting {
   text-align: center;
   font-size: 1rem;

@@ -20,20 +20,32 @@
 
 .nav-section {
   display: inline-block;
-  top: 21%;
+  top: 20%;
   position: fixed;
-  right: 5%;
-  transform: translateX(5%);
+  width: 100vw;
+  background-color: rgb(247, 248, 248);
+}
+
+ul {
+  text-align: center;
 }
 
 .nav-items li {
   display: inline-block;
-  padding-right: 1rem;
+  padding: 1rem 1rem 0.5rem 1rem;
   text-align: right;
-  margin: 0 0.2rem 0 0.2rem;
   color: #6f0fa7;
+  cursor: pointer;
+  transition: font-size 1s linear 0.5s;
+  font-size: 0.7rem;
+  right: 5%;
+  top: 21%;
 }
 
+li:last-child {
+  position: fixed;
+  right: 2%;
+}
 .nav-bar-text {
   padding-right: 0.5rem;
   color: #6f0fa7;
@@ -41,8 +53,8 @@
   font-weight: bold;
 }
 
-li {
-  cursor: pointer;
+li:hover {
+  font-size: 0.8rem;
 }
 
 .nav-icon {
