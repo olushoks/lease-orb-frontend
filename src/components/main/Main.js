@@ -62,7 +62,7 @@ const Main = ({ user, submitLease, indicateInterest, addReview, reviews }) => {
             would you like to do today?
           </p>
           <p className="error">{error}</p>
-          <div className="btn-group">
+          <div>
             <button
               className="btn action"
               onClick={() => handleClick("listALease")}

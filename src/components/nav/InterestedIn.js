@@ -33,22 +33,24 @@ const InterestedIn = ({ user, closeNav, withdrawInterest }) => {
 
   if (leaseInterestedIn.length === 0)
     return (
-      <section>
+      <section className="section">
         <div className="nav-current">
           <span onClick={closeNav}>
             <i className="fas fa-window-close close-btn"></i>
           </span>
+          <h3 className="current-nav-indicator">leases interested in</h3>
           <p>You have not indicated interest in any lease</p>
         </div>
       </section>
     );
 
   return (
-    <section>
+    <section className="section">
       <div className="nav-current">
         <span onClick={closeNav}>
           <i className="fas fa-window-close close-btn"></i>
         </span>
+        <h3 className="current-nav-indicator">leases interested in</h3>
         {leaseInterestedIn.map((lease) => {
           return (
             <div key={lease._id}>

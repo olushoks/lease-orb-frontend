@@ -36,7 +36,6 @@ const Header = ({
   const handleClick = (task, e) => {
     switch (task) {
       case "listedLease":
-        console.log(e.target.getBoundingClientRect().left);
         setCurrentNav(
           <ListedLease
             user={user}
@@ -47,7 +46,6 @@ const Header = ({
         setIsNavOpen(true);
         break;
       case "interestedIn":
-        console.log(e.target.getBoundingClientRect().left);
         setCurrentNav(
           <InterestedIn
             user={user}
@@ -58,7 +56,6 @@ const Header = ({
         setIsNavOpen(true);
         break;
       case "messages":
-        console.log(e.target.getBoundingClientRect().left);
         setCurrentNav(
           <Messages
             user={messageDetails}

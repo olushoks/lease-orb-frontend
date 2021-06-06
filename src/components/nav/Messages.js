@@ -60,18 +60,19 @@ const Messages = ({ user, closeNav, replyMessage }) => {
 
   if (messages.length === 0)
     return (
-      <section>
+      <section className="section">
         <div className="nav-current">
           <span onClick={closeNav}>
             <i className="fas fa-window-close close-btn"></i>
           </span>
+          <h3 className="current-nav-indicator">Messages</h3>
           <p>You have no mesages at this time</p>
         </div>
       </section>
     );
 
   return (
-    <section>
+    <section className="section">
       {/* <div className="nav-current" style={{ left: "83%" }}> */}
       <div className="nav-current">
         <span onClick={closeNav}>
@@ -80,6 +81,7 @@ const Messages = ({ user, closeNav, replyMessage }) => {
             // style={{ left: "82%" }}
           ></i>
         </span>
+        <h3 className="current-nav-indicator">Messages</h3>
         <div>
           {messages.map((message) => {
             return (

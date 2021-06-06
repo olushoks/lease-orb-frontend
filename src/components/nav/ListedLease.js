@@ -15,11 +15,12 @@ const ListedLease = (props) => {
 
   if (!listedLease || listedLease.length < 1) {
     return (
-      <section>
+      <section className="section">
         <div className="nav-current">
           <span onClick={closeNav}>
             <i className="fas fa-window-close close-btn"></i>
           </span>
+          <h3 className="current-nav-indicator">Listed Lease</h3>
           <p>You do not have any listed lease</p>
         </div>
       </section>
@@ -27,11 +28,12 @@ const ListedLease = (props) => {
   }
 
   return (
-    <section>
+    <section className="section">
       <div className="nav-current">
         <span onClick={closeNav}>
           <i className="fas fa-window-close close-btn"></i>
         </span>
+        <h3 className="current-nav-indicator">Listed Lease</h3>
         {listedLease.map((listedLease) => {
           return (
             <div key={listedLease._id}>

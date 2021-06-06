@@ -133,9 +133,9 @@ const ListLease = (props) => {
   /***END */
 
   return (
-    <>
+    <div className="list-lease-section">
       <span onClick={closeForm}>
-        <i className="fas fa-window-close"></i>
+        <i className="fas fa-window-close close-btn"></i>
       </span>
       <div>
         <MapWithAutoComplete
@@ -157,7 +157,7 @@ const ListLease = (props) => {
           alert={alertRef}
         />
       </div>
-    </>
+    </div>
   );
 };
 

@@ -1,5 +1,5 @@
-section {
-  background-color: hsla(180, 7%, 97%, 0.9);
+.section {
+  background-color: hsla(180, 7%, 97%, 0.98);
   position: fixed;
   top: 23%;
   width: 100vw;
@@ -11,26 +11,25 @@ section {
   font-size: 1rem;
   color: #6f0fa7;
   top: 0%;
-  position: absolute;
+  position: fixed;
   left: -3%;
   cursor: pointer;
 }
 
 .nav-current {
-  /* background-color: rgba(112, 15, 169, 0.1);
-  position: absolute;
-  top: 2%;
-  left: 35%;
-  padding: 0.7rem;
-  height: auto;
-  border-radius: 0 1rem 1rem 1rem; */
   position: fixed;
   top: 25%;
-  left: 30%;
+  right: 0%;
   background-color: rgba(112, 15, 169, 0.1);
   padding: 0.7rem;
   height: auto;
   border-radius: 0 1rem 1rem 1rem;
+}
+
+.current-nav-indicator {
+  text-transform: uppercase;
+  text-decoration: underline;
+  text-align: center;
 }
 
 .delete-btn {
