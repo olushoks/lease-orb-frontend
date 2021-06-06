@@ -12,7 +12,6 @@ const InterestedIn = ({ user, closeNav, withdrawInterest }) => {
   if (!leaseInterestedIn) return null;
 
   const withdrawInterestInLease = async (lease) => {
-    console.log(lease._id);
     await axios
       .delete(
         `http://localhost:5000/api/users/${user.username}/withdraw-interest/${lease._id}`
@@ -26,7 +25,6 @@ const InterestedIn = ({ user, closeNav, withdrawInterest }) => {
           return updatedLeases;
         }); // Remove from UI
         withdrawInterest(res.data); // Remove from Database
-        console.log(res.data);
       })
       .catch((err) => console.log(err.response.data));
   };

@@ -73,12 +73,10 @@ const Messages = ({ user, closeNav, replyMessage }) => {
 
   return (
     <section className="section">
-      {/* <div className="nav-current" style={{ left: "83%" }}> */}
       <div className="nav-current">
         <span onClick={closeNav}>
           <i
             className="fas fa-window-close close-btn"
-            // style={{ left: "82%" }}
           ></i>
         </span>
         <h3 className="current-nav-indicator">Messages</h3>

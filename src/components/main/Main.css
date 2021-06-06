@@ -43,7 +43,7 @@
 }
 
 .error {
-  border-left: 0.3rem solid red;
+  border-left: 0.3rem solid #ff0000;
   padding-left: 0.3rem;
   margin-top: 2rem;
 }

@@ -9,7 +9,7 @@ import transformString from "../../helper/stringTransformer";
 const SearchLease = ({ closeForm, user, indicateInterest }) => {
   const searchBox = useRef("");
   const [searchResult, setSearchResult] = useState(null);
-  const [error, setError] = useState("");
+  const responeRef = useRef(null);
 
   useEffect(() => {
     searchBox.current.focus();
@@ -41,26 +41,27 @@ const SearchLease = ({ closeForm, user, indicateInterest }) => {
       )
       .then((res) => {
         indicateInterest(res.data);
-        console.log(res.data);
+
+        responeRef.current.innerText = `Interest indicated. Message has been sent to the leaseholder`;
+        responeRef.current.className = "success";
+        setTimeout(clearError, 3000);
       })
       .catch((err) => {
-        console.log(err.response);
         if (err.response.data.error1) {
-          setError(err.response.data.error1);
+          responeRef.current.innerText = err.response.data.error1;
+          responeRef.current.className = "error";
           setTimeout(clearError, 3000);
-          console.log(err.response.data.error1);
         }
         if (err.response.data.error2) {
-          setError(err.response.data.error2);
+          responeRef.current.innerText = err.response.data.error2;
+          responeRef.current.className = "error";
           setTimeout(clearError, 3000);
-          console.log(err.response.data.error2);
         }
-        console.log(err.response.data);
       });
   };
 
   const clearError = () => {
-    setError(null);
+    responeRef.current.innerText = null;
   };
 
   const searchField = (
@@ -122,9 +123,8 @@ const SearchLease = ({ closeForm, user, indicateInterest }) => {
         {searchResult && searchResult.length > 0 && (
           <Map searchResult={searchResult} />
         )}
-        {/* {searchResult && searchResult.length > 0 && map(searchResult)} */}
       </div>
-      <p className="error">{error}</p>
+      <p ref={responeRef}></p>
       <div>{searchField}</div>
       <div>{searchResult && displayResult}</div>
     </div>
