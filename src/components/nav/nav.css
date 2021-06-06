@@ -28,8 +28,12 @@
 
 .current-nav-indicator {
   text-transform: uppercase;
-  text-decoration: underline;
+  color: #ffffff;
+  background-color: #6f0fa7;
   text-align: center;
+  height: 2rem;
+  border-radius: 0.3rem 0.2rem;
+  padding: 0.2rem 0;
 }
 
 .delete-btn {
@@ -40,7 +44,7 @@
   width: 8rem;
   padding: 0.2rem 0.2rem;
   position: relative;
-  right: -65%;
+  right: -70%;
   cursor: pointer;
 }
 .delete-btn:hover {

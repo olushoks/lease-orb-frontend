@@ -46,7 +46,7 @@ const ListedLease = (props) => {
               <p>Additional Info: {listedLease.additionalInfo}</p>
               <button
                 className="delete-btn"
-                style={{ right: "-50%" }}
+                // style={{ right: "-50%" }}
                 onClick={deleteLease}
               >
                 Delete Lease
