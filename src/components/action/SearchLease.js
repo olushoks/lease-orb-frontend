@@ -1,4 +1,3 @@
-// import map from "../map/Map";
 import Map from "../map/Map";
 import { useState, useRef, useEffect } from "react";
 import axios from "axios";

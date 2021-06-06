@@ -46,11 +46,17 @@ const ListLease = (props) => {
     ) {
       alertRef.current.innerHTML =
         "One or more fields needs to be filled before  submitting";
+      alertRef.current.className = "error";
+      setTimeout(clearAlert, 3000);
     } else if (listedLease.length > 0) {
       alertRef.current.innerHTML =
         "You cannot have more than one active lease listed";
+      alertRef.current.className = "error";
+      setTimeout(clearAlert, 3000);
     } else {
       alertRef.current.innerHTML = "Lease has been succesfully submitted";
+      alertRef.current.className = "success";
+      setTimeout(clearAlert, 3000);
       const additionalInfo =
         additionalInfoRef.current.value === ""
           ? " "
@@ -71,11 +77,14 @@ const ListLease = (props) => {
     }
   };
 
+  const clearAlert = () => {
+    alertRef.current.innerText = null;
+  };
+
   const getState = (addressArray) => {
     let state;
     const [stateDetails] = addressArray.filter((address) => {
       return address.types[0] === "administrative_area_level_1";
-      // if (address.types[0] === "administrative_area_level_1") return true;
     });
     state = stateDetails === undefined ? "" : stateDetails.long_name;
     state = transformString(state);
@@ -86,9 +95,6 @@ const ListLease = (props) => {
     let city;
     const [cityDetails] = addressArray.filter((address) => {
       return address.types[0] === "locality";
-      // if (address.types[0] === "locality") {
-      //   return true;
-      // }
     });
     city = cityDetails === undefined ? "" : cityDetails.long_name;
     city = transformString(city);
@@ -99,7 +105,6 @@ const ListLease = (props) => {
     let zipCode;
     const [zipCodeDetails] = addressArray.filter((address) => {
       return address.types[0] === "postal_code";
-      // if (address.types[0] === "postal_code") return true;
     });
     zipCode = zipCodeDetails === undefined ? "" : zipCodeDetails.long_name;
     zipCode = transformString(zipCode);
@@ -130,7 +135,6 @@ const ListLease = (props) => {
       lng,
     });
   };
-  /***END */
 
   return (
     <div className="list-lease-section">

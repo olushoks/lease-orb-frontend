@@ -1,4 +1,5 @@
 import "./LogIn.css";
+import { useRef, useEffect } from "react";
 
 const SignUpForm = (props) => {
   const {
@@ -9,6 +10,12 @@ const SignUpForm = (props) => {
     handleSubmit,
     error,
   } = props;
+
+  const userNameRef = useRef(null);
+
+  useEffect(() => {
+    userNameRef.current.focus();
+  });
 
   return (
     <div className="form-div">

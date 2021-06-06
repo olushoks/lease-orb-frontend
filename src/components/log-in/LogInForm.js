@@ -1,4 +1,5 @@
 import "./LogIn.css";
+import { useEffect, useRef } from "react";
 
 const LogInForm = (props) => {
   const {
@@ -10,11 +11,18 @@ const LogInForm = (props) => {
     error,
   } = props;
 
+  const userNameRef = useRef(null);
+
+  useEffect(() => {
+    userNameRef.current.focus();
+  });
+
   return (
     <div className="form-div">
       <p className="login-error">{error}</p>
       <form className="form-input" onSubmit={(e) => handleSubmit(e)}>
         <input
+          ref={userNameRef}
           type="text"
           placeholder="username"
           name="username"
