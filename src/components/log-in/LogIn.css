@@ -26,12 +26,12 @@
 
 input {
   display: block;
-  margin-bottom: 40px;
   width: 15rem;
   height: 2.5rem;
   padding: 0.2rem 0.5rem;
   color: #0d2942;
   border: 0.15rem solid #6f0fa7;
+  margin-bottom: 2rem;
 }
 
 .btn {
@@ -54,7 +54,7 @@ input {
 .login-error {
   border-left: 0.3rem solid red;
   padding-left: 0.3rem;
-  margin-top: 2rem;
+  margin: 2rem 0 2rem;
   position: relative;
   top: 35%;
   left: 25%;

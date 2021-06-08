@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import DisplayReviews from "../reviews/DisplayReviews";
 
 import "../reviews/DisplayReviews.css";
@@ -73,10 +73,10 @@ const AddForm = ({ closeForm, addReview, reviews, user }) => {
     ></i>,
   ];
 
-  const [alert, setAlert] = useState("");
   const [starRatings, setStarRatings] = useState(stars);
   const [num, setNum] = useState(0);
   const [review, setReview] = useState("");
+  const alertRef = useRef("");
 
   const handleChange = (e) => {
     setReview(e.target.value);
@@ -85,22 +85,34 @@ const AddForm = ({ closeForm, addReview, reviews, user }) => {
   const submitReview = (e) => {
     e.preventDefault();
     if (!review && !num) {
-      setAlert(`You cannot submit empty values`);
-      setTimeout(() => setAlert(""), 2000);
+      alertRef.current.innerHTML = `You cannot submit empty values`;
+      alertRef.current.className = "error";
+      setTimeout(() => {
+        alertRef.current.innerHTML = "";
+      }, 2000);
     } else if (!review && num) {
-      setAlert(`Enter review before submitting`);
-      setTimeout(() => setAlert(""), 2000);
+      alertRef.current.innerHTML = `Enter review before submitting`;
+      alertRef.current.className = "error";
+      setTimeout(() => {
+        alertRef.current.innerHTML = "";
+      }, 2000);
     } else if (!num && review) {
-      setAlert(`click on the stars to give a rating`);
-      setTimeout(() => setAlert(""), 2000);
+      alertRef.current.innerHTML = `click on the stars to give a rating`;
+      alertRef.current.className = "error";
+      setTimeout(() => {
+        alertRef.current.innerHTML = "";
+      }, 2000);
     } else {
       addReview({
         review_by: user.username,
         review_text: review,
         star_rating: num,
       });
-      setAlert(`Thanks for submitting youur review`);
-      setTimeout(() => setAlert(""), 2000);
+      alertRef.current.innerHTML = `Thanks for submitting youur review`;
+      alertRef.current.className = "success";
+      setTimeout(() => {
+        alertRef.current.innerHTML = "";
+      }, 2000);
       setStarRatings(stars);
       setReview("");
       setNum(0);
@@ -113,7 +125,7 @@ const AddForm = ({ closeForm, addReview, reviews, user }) => {
         <i className="fas fa-window-close"></i>
       </span>
       <div className="review-form">
-        <p className="review-error">{alert}</p>
+        <p ref={alertRef}>{alert}</p>
         {starRatings}
         <form onSubmit={submitReview}>
           <textarea

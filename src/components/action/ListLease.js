@@ -78,7 +78,7 @@ const ListLease = (props) => {
   };
 
   const clearAlert = () => {
-    alertRef.current.innerText = null;
+    alertRef.current.innerHTML = "";
   };
 
   const getState = (addressArray) => {

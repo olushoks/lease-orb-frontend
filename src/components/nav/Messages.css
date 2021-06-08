@@ -6,7 +6,7 @@
 
 .msg-section {
   position: fixed;
-  right: 19%;
+  right: 18%;
   top: 27%;
   background-color: rgb(112, 15, 169, 0.1);
   border-radius: 0 1rem 1rem 1rem;
@@ -20,7 +20,7 @@
 
 .close-thread {
   position: fixed;
-  right: 19.5%;
+  right: 20%;
   top: 28%;
   color: #700fa9;
   cursor: pointer;

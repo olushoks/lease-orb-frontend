@@ -40,7 +40,6 @@ const SearchLease = ({ closeForm, user, indicateInterest }) => {
       )
       .then((res) => {
         indicateInterest(res.data);
-
         responeRef.current.innerText = `Interest indicated. Message has been sent to the leaseholder`;
         responeRef.current.className = "success";
         setTimeout(clearError, 3000);
@@ -56,6 +55,7 @@ const SearchLease = ({ closeForm, user, indicateInterest }) => {
           responeRef.current.className = "error";
           setTimeout(clearError, 3000);
         }
+        console.log(err.response);
       });
   };
 

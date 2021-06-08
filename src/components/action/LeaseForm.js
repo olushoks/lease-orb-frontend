@@ -24,7 +24,7 @@ const LeaseForm = (props) => {
         <label htmlFor="address">Address</label>
         <input type="text" ref={addressRef} readOnly></input>
         <label htmlFor="monthly-rent">Rent Per Month</label>
-        <input type="number" min="0" step="500" ref={rentRef}></input>
+        <input type="number" min="0" step="50" ref={rentRef}></input>
         <label htmlFor="available-date">Available as of?</label>
         <input
           type="date"

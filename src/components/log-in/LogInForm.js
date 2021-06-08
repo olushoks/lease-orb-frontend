@@ -15,7 +15,7 @@ const LogInForm = (props) => {
 
   useEffect(() => {
     userNameRef.current.focus();
-  });
+  }, []);
 
   return (
     <div className="form-div">
@@ -28,14 +28,14 @@ const LogInForm = (props) => {
           name="username"
           value={username}
           onChange={handleChange}
-        ></input>
+        />
         <input
           type="password"
           placeholder="password"
           name="password"
           value={password}
           onChange={handleChange}
-        ></input>
+        />
         <button type="submit" className="btn">
           Login
         </button>

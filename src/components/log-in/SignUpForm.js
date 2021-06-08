@@ -15,13 +15,14 @@ const SignUpForm = (props) => {
 
   useEffect(() => {
     userNameRef.current.focus();
-  });
+  }, []);
 
   return (
     <div className="form-div">
       <p className="login-error">{error}</p>
       <form className="form-input" onSubmit={(e) => handleSubmit(e)}>
         <input
+          ref={userNameRef}
           type="text"
           id="username"
           name="username"
